@@ -12,7 +12,7 @@ export const feedItems: FeedItem[] = [
     layerContext:
       "Uma foto de grupo é publicada. Uma das pessoas não queria aparecer e pede a remoção.",
     layerLaw:
-      "Constituição, art. 5º, X e Código Civil, arts. 20 e 21: imagem, honra e vida privada são invioláveis.",
+      "Constituição, art. 5º, X, e Código Civil, arts. 20 e 21: imagem, honra e vida privada são protegidas.",
     layerConsequence:
       "Recusar a remoção pode transformar um pedido informal em pedido de indenização por dano moral.",
     href: "/episodios/quem-autorizou",
@@ -56,7 +56,8 @@ export const feedItems: FeedItem[] = [
     title: "Sua imagem é um dado pessoal",
     summary: "A LGPD alcança imagem e voz sempre que elas identificam uma pessoa.",
     layerContext: "Perfil monetizado publica rostos de pessoas atendidas no estabelecimento.",
-    layerLaw: "LGPD, arts. 5º, I e 7º; a exceção do art. 4º, II não cobre uso econômico.",
+    layerLaw:
+      "A LGPD define dado pessoal no art. 5º, I, e prevê bases legais no art. 7º; o uso exclusivamente pessoal e não econômico fica fora da lei pelo art. 4º, II.",
     layerConsequence:
       "Sem base legal, o tratamento é irregular e pode gerar reclamação e responsabilização.",
     href: "/leis",
@@ -110,7 +111,8 @@ export const feedItems: FeedItem[] = [
     title: "Plataformas e o Tema 987 do STF",
     summary: "O que muda na responsabilidade de quem hospeda o conteúdo.",
     layerContext: "Conteúdo ofensivo permanece no ar mesmo após notificação da vítima.",
-    layerLaw: "Marco Civil, art. 19, com a leitura fixada pelo STF no Tema 987.",
+    layerLaw:
+      "Marco Civil, arts. 19 e 21, lido com os Temas 987 e 533 do STF (julgamento concluído em 2025): o regime varia conforme a natureza do conteúdo.",
     layerConsequence:
       "A notificação extrajudicial ganha peso e o silêncio da plataforma custa caro.",
     href: "/jurisprudencia",

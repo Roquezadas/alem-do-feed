@@ -7,12 +7,16 @@ export function LawCard({ law }: { law: Law }) {
 
   return (
     <article className="frame-open flex flex-col p-5">
-      <Tag tone="ink" className="self-start">
+      <Tag tone={law.status === "proposta" ? "coral" : "ink"} className="self-start">
         {law.category}
       </Tag>
       <p className="label-mono mt-4 text-primary">{law.article}</p>
       <h3 className="mt-2 text-lg leading-snug font-bold">{law.title}</h3>
       <p className="mt-2 text-sm text-muted-foreground">{law.summary}</p>
+
+      {law.status === "proposta" ? (
+        <p className="label-mono mt-4 text-accent">PROPOSTA · NÃO É LEI VIGENTE</p>
+      ) : null}
 
       <button
         type="button"

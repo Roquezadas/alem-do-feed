@@ -27,9 +27,9 @@ export const questions: Question[] = [
     id: "q-print-conversa",
     question: "Posso publicar um print de uma conversa?",
     status: "risco",
-    shortAnswer: "É um dos cenários de maior risco.",
+    shortAnswer: "Usar como prova é diferente de expor publicamente.",
     reasoning:
-      "Uma conversa privada envolve intimidade e vida privada de todos os participantes. Publicar o print expõe conteúdo, nome, foto e contexto de alguém que não consentiu com a divulgação. Dependendo do que está escrito, soma-se ofensa à honra e tratamento de dados pessoais sem base legal.",
+      "Uma conversa privada envolve intimidade e vida privada de todos os participantes. Apresentar o print a uma autoridade para provar um fato é diferente de publicar para expor alguém. Na divulgação pública, podem entrar honra, privacidade e dados sensíveis; a veracidade da conversa não elimina automaticamente o risco.",
     references: ["Vida privada", "Crimes contra a honra", "LGPD"],
     lawIds: ["cc-21", "cp-138-140", "lgpd-7"],
     tags: ["Print", "WhatsApp", "Privacidade"],

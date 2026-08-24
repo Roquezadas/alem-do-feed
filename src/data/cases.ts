@@ -54,6 +54,40 @@ export const cases: Case[] = [
     verified: true,
   },
   {
+    id: "stf-re-1057258",
+    court: "STF",
+    process: "RE 1.057.258 / Tema 533",
+    date: "26/06/2025",
+    title: "O regime das plataformas depende da natureza do conteúdo",
+    theme: "Marco Civil da Internet · Remoção",
+    legalIssue:
+      "A regra do art. 19 do Marco Civil deve ser aplicada da mesma forma a todo conteúdo ilícito de terceiros?",
+    decision:
+      "No julgamento conjunto dos Temas 987 e 533, o STF declarou a inconstitucionalidade parcial e progressiva do art. 19 e estabeleceu trilhas diferentes de responsabilização, com notificação extrajudicial em hipóteses específicas, sem eliminar a análise do caso concreto.",
+    whyItMatters:
+      "A resposta para uma denúncia de nudez não consentida, conteúdo infantil, conta falsa ou ilícito em geral não é necessariamente a mesma para uma ofensa à honra.",
+    sourceUrl:
+      "https://portal.stf.jus.br/jurisprudenciaRepercussao/verAndamentoProcesso.asp?incidente=5217273&numeroProcesso=1057258&classeProcesso=RE&numeroTema=533",
+    verified: true,
+  },
+  {
+    id: "stf-re-1040515",
+    court: "STF",
+    process: "RE 1.040.515 / Tema 979",
+    date: "26/04/2024",
+    title: "Gravação ambiental e prova em matéria eleitoral",
+    theme: "Prova · Comunicação",
+    legalIssue:
+      "A gravação ambiental feita por um dos interlocutores sem autorização judicial é sempre prova lícita?",
+    decision:
+      "Em matéria eleitoral, o STF fixou regime específico para gravação ambiental clandestina: a licitude depende do contexto, com ressalva para gravação realizada em local público sem controle de acesso.",
+    whyItMatters:
+      "Gravar uma conversa e publicar seu conteúdo são etapas diferentes; a exceção eleitoral impede transformar uma regra de prova em autorização geral para divulgar áudios.",
+    sourceUrl:
+      "https://portal.stf.jus.br/jurisprudenciaRepercussao/verAndamentoProcesso.asp?incidente=5173382&numeroProcesso=1040515&classeProcesso=RE&numeroTema=979",
+    verified: true,
+  },
+  {
     id: "stj-sumula-403",
     court: "STJ",
     process: "Súmula 403",

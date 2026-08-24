@@ -31,7 +31,7 @@ function Page() {
     <Section
       label="LEGISLAÇÃO"
       title="O que a lei diz?"
-      intro="Os textos legais que sustentam a discussão sobre imagem, privacidade e responsabilidade na internet. Todos com link para a fonte oficial."
+      intro="Textos legais, instrumentos processuais e uma proposta legislativa, sempre separados por status e com link para a fonte oficial. Projeto de lei não é direito vigente."
     >
       <div className="flex flex-wrap gap-2">
         {["TUDO", ...lawCategories].map((c) => (

@@ -31,13 +31,18 @@ export interface Law {
     | "LGPD"
     | "Marco Civil da Internet"
     | "ECA"
-    | "Lei de Direitos Autorais";
+    | "Lei de Direitos Autorais"
+    | "Código de Defesa do Consumidor"
+    | "Código de Processo Civil"
+    | "Lei de proteção sexual"
+    | "Projeto de lei";
   name: string;
   article: string;
   title: string;
   summary: string;
   text: string;
   sourceUrl: string;
+  status?: "vigente" | "proposta";
 }
 
 export interface Case {

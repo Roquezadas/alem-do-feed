@@ -27,6 +27,45 @@ export const topics: Topic[] = [
     episodeIds: ["ep-01"],
   },
   {
+    id: "t-local-publico",
+    slug: "foto-em-local-publico",
+    name: "Foto em local público",
+    definition:
+      "Estar na rua, em um show ou em uma universidade não apaga o direito à imagem; importa saber se a pessoa foi individualizada e qual é a finalidade.",
+    legalBasis: "Constituição, art. 5º, X; Código Civil, arts. 20 e 21.",
+    example:
+      "Uma multidão pode aparecer em uma cobertura de evento; um close usado para ridicularizar alguém exige outra análise.",
+    lawIds: ["cf-5-x", "cc-20", "cc-21"],
+    caseIds: ["stf-adi-4815"],
+    episodeIds: ["ep-01"],
+  },
+  {
+    id: "t-compartilhar",
+    slug: "publicar-e-compartilhar",
+    name: "Publicar e compartilhar",
+    definition:
+      "Compartilhar não cria automaticamente responsabilidade, mas pode ser uma nova conduta quando amplia conscientemente um dano.",
+    legalBasis: "Código Civil, arts. 186 e 927; Código Penal, conforme o conteúdo.",
+    example:
+      "Reenviar um print ofensivo com comentário de deboche é diferente de encaminhar uma prova a uma autoridade.",
+    lawIds: ["cc-186-927", "cp-138-140"],
+    caseIds: ["stj-sumula-221", "stf-re-1037396"],
+    episodeIds: ["ep-01"],
+  },
+  {
+    id: "t-gravar-divulgar",
+    slug: "gravar-e-divulgar",
+    name: "Gravar não é divulgar",
+    definition:
+      "A licitude de gravar uma conversa, especialmente como prova, não autoriza automaticamente publicar seu áudio ou print na internet.",
+    legalBasis: "Constituição, art. 5º, XII; Lei 9.296/1996; regime específico do Tema 979 do STF.",
+    example:
+      "Levar um áudio a uma autoridade para denunciar assédio é uma finalidade diferente de expô-lo para milhares de pessoas.",
+    lawIds: ["cf-5-x", "cc-21"],
+    caseIds: ["stf-re-1040515"],
+    episodeIds: ["ep-01"],
+  },
+  {
     id: "t-honra",
     slug: "honra",
     name: "Honra",
