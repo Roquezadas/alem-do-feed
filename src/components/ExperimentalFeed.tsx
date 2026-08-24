@@ -5,10 +5,28 @@ import { ExperimentalDomino } from "@/components/ExperimentalDomino";
 import { ExperimentalPost } from "@/components/ExperimentalPost";
 import { Tag } from "@/components/Tag";
 import { actionLabels, experimentalScenarios } from "@/data/experimentalFeed";
-import type { FeedAction } from "@/data/types";
+import type { ExperimentalScenario, FeedAction } from "@/data/types";
 
 type ExperienceStage = "intro" | "feed" | "reveal" | "reflection";
-type UserDecision = { scenarioId: string; action: FeedAction; timestamp: number };
+type UserDecision = {
+  scenarioId: string;
+  action: FeedAction;
+  risk: "low" | "attention" | "high";
+  timestamp: number;
+};
+
+const riskLabel: Record<UserDecision["risk"], string> = {
+  low: "RISCO BAIXO",
+  attention: "ATENÇÃO",
+  high: "MAIOR RISCO",
+};
+const riskTone: Record<UserDecision["risk"], "cobalt" | "default" | "coral"> = {
+  low: "cobalt",
+  attention: "default",
+  high: "coral",
+};
+
+
 
 export function ExperimentalFeed() {
   const [stage, setStage] = useState<ExperienceStage>("intro");
@@ -16,7 +34,12 @@ export function ExperimentalFeed() {
   const [decisions, setDecisions] = useState<UserDecision[]>([]);
   const [lastAction, setLastAction] = useState<FeedAction | null>(null);
 
-  const currentScenario = experimentalScenarios[scenarioIndex];
+  const currentScenario: ExperimentalScenario =
+  experimentalScenarios[scenarioIndex] ?? experimentalScenarios[0]!;
+  const total = experimentalScenarios.length;
+  const progressPct =
+    stage === "intro" ? 0 : Math.round(((scenarioIndex + (stage === "feed" ? 0.5 : 1)) / total) * 100);
+
   useEffect(() => {
     if (stage === "feed") {
       window.dispatchEvent(
@@ -25,26 +48,31 @@ export function ExperimentalFeed() {
     }
     if (stage === "reveal") window.dispatchEvent(new CustomEvent("adf:chain_viewed"));
   }, [currentScenario.id, stage]);
+
   const start = () => {
     setStage("feed");
     window.dispatchEvent(new CustomEvent("adf:experimental_started"));
   };
+
   const handleDecision = (action: FeedAction) => {
     if (stage !== "feed") return;
     setDecisions((current) => [
       ...current,
-      { scenarioId: currentScenario.id, action, timestamp: Date.now() },
+      { scenarioId: currentScenario.id, action, risk: currentScenario.consequence.risk, timestamp: Date.now() },
     ]);
     setLastAction(action);
     setStage("reveal");
+    window.scrollTo({ top: 0, behavior: "smooth" });
     window.dispatchEvent(
       new CustomEvent("adf:decision_made", { detail: { scenarioId: currentScenario.id, action } }),
     );
   };
+
   const next = () => {
-    if (scenarioIndex === experimentalScenarios.length - 1) {
+    if (scenarioIndex === total - 1) {
       setStage("reflection");
       window.dispatchEvent(new CustomEvent("adf:experiment_finished"));
+      window.scrollTo({ top: 0, behavior: "smooth" });
       return;
     }
     setScenarioIndex((value) => value + 1);
@@ -52,6 +80,7 @@ export function ExperimentalFeed() {
     setStage("feed");
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
+
   const reset = () => {
     setScenarioIndex(0);
     setDecisions([]);
@@ -81,7 +110,7 @@ export function ExperimentalFeed() {
             ENTRAR NO FEED <ArrowRight size={18} aria-hidden="true" />
           </button>
           <span className="label-mono experimental-duration">
-            EXPERIÊNCIA INTERATIVA · APROX. 5 MIN
+            {total} CENÁRIOS · EXPERIÊNCIA INTERATIVA · APROX. 5 MIN
           </span>
         </div>
       </div>
@@ -95,6 +124,10 @@ export function ExperimentalFeed() {
     const context = decisions.filter(({ action }) =>
       ["verify", "ask", "authority", "report", "ignore", "edit"].includes(action),
     ).length;
+    const highRiskChoices = decisions.filter(
+      ({ risk, action }) => risk === "high" && ["share", "repost", "publish"].includes(action),
+    ).length;
+
     return (
       <div className="experimental-shell experimental-reflection">
         <div className="experimental-reflection-inner">
@@ -111,6 +144,9 @@ export function ExperimentalFeed() {
             <p>
               {shares} envolveram publicação ou compartilhamento. {context} envolveram verificação,
               cuidado ou contexto.
+              {highRiskChoices > 0
+                ? ` ${highRiskChoices} delas foram em cenários de maior risco jurídico.`
+                : ""}
             </p>
           </div>
           <div className="experimental-reflection-layers">
@@ -144,10 +180,13 @@ export function ExperimentalFeed() {
         </Link>
         <span className="label-mono">
           ADF FEED SYSTEM · CENÁRIO {String(scenarioIndex + 1).padStart(2, "0")} /{" "}
-          {String(experimentalScenarios.length).padStart(2, "0")}
+          {String(total).padStart(2, "0")}
         </span>
         <span className="label-mono">{decisions.length} DECISÕES</span>
       </header>
+      <div className="experimental-progress-track" aria-hidden="true">
+        <div className="experimental-progress-fill" style={{ width: `${progressPct}%` }} />
+      </div>
       <div className="experimental-stage-intro">
         <Tag tone={currentScenario.type === "minor" ? "coral" : "cobalt"}>
           {currentScenario.type === "minor"
@@ -174,7 +213,12 @@ export function ExperimentalFeed() {
             </p>
           </div>
           <div className="experimental-consequence">
-            <span className="label-mono text-coral">O QUE ACONTECEU?</span>
+            <div className="experimental-consequence-head">
+              <span className="label-mono text-coral">O QUE ACONTECEU?</span>
+              <Tag tone={riskTone[currentScenario.consequence.risk]}>
+                {riskLabel[currentScenario.consequence.risk]}
+              </Tag>
+            </div>
             <h2>{currentScenario.consequence.headline}</h2>
             <p>{currentScenario.consequence.summary}</p>
             <p className="text-muted-foreground">{currentScenario.consequence.context}</p>
@@ -222,9 +266,7 @@ export function ExperimentalFeed() {
             onClick={next}
             className="experimental-primary-action experimental-next"
           >
-            {scenarioIndex === experimentalScenarios.length - 1
-              ? "VER SEU RASTRO"
-              : "PRÓXIMO CENÁRIO"}{" "}
+            {scenarioIndex === total - 1 ? "VER SEU RASTRO" : "PRÓXIMO CENÁRIO"}{" "}
             <ArrowRight size={18} aria-hidden="true" />
           </button>
         </section>

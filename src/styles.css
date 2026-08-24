@@ -597,6 +597,18 @@
   color: var(--cobalt);
 }
 
+.experimental-progress-track {
+  width: min(100%, 64rem);
+  margin: 0.75rem auto 0;
+  height: 3px;
+  background: var(--border);
+}
+.experimental-progress-fill {
+  height: 100%;
+  background: var(--cobalt);
+  transition: width 400ms ease;
+}
+
 .experimental-stage-intro {
   width: min(100%, 64rem);
   margin: 4rem auto 2rem;
@@ -812,6 +824,13 @@
   border: 1px solid var(--ink);
   background: var(--card);
 }
+.experimental-consequence-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
 .experimental-consequence h2 {
   max-width: 15ch;
   margin-top: 1rem;
@@ -833,6 +852,19 @@
   max-width: 34rem;
   margin: 4rem auto;
   justify-items: center;
+}
+.experimental-domino-label {
+  margin-bottom: 1.5rem;
+  color: var(--muted-foreground);
+}
+.experimental-domino.is-contained .experimental-domino-node {
+  border-color: var(--cobalt);
+}
+.experimental-domino.is-contained .experimental-domino-step > svg {
+  color: var(--cobalt);
+}
+.experimental-domino.is-contained .experimental-domino-question {
+  border-top-color: var(--cobalt);
 }
 .experimental-domino-step {
   display: grid;
