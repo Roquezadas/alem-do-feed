@@ -111,7 +111,8 @@ export const feedItems: FeedItem[] = [
     summary: "O que muda na responsabilidade de quem hospeda o conteúdo.",
     layerContext: "Conteúdo ofensivo permanece no ar mesmo após notificação da vítima.",
     layerLaw: "Marco Civil, art. 19, com a leitura fixada pelo STF no Tema 987.",
-    layerConsequence: "A notificação extrajudicial ganha peso e o silêncio da plataforma custa caro.",
+    layerConsequence:
+      "A notificação extrajudicial ganha peso e o silêncio da plataforma custa caro.",
     href: "/jurisprudencia",
     tags: ["STF", "Casos"],
   },

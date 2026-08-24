@@ -5,7 +5,8 @@ import { getLaw } from "@/data/laws";
 
 export function MythCard({ item }: { item: Myth }) {
   const [open, setOpen] = useState(false);
-  const tone = item.verdict === "MITO" ? "coral" : item.verdict === "VERDADE" ? "cobalt" : "default";
+  const tone =
+    item.verdict === "MITO" ? "coral" : item.verdict === "VERDADE" ? "cobalt" : "default";
 
   return (
     <article className="frame-open p-5">

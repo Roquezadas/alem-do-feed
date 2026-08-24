@@ -58,7 +58,10 @@ function buildIndex(): Result[] {
 }
 
 const normalize = (s: string) =>
-  s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+  s
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase();
 
 export function SearchDialog() {
   const [open, setOpen] = useState(false);

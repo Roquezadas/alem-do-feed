@@ -25,11 +25,15 @@ function Page() {
       intro="Cada conversa parte de uma situação reconhecível e acompanha suas camadas jurídicas."
     >
       <div className="grid gap-6 md:grid-cols-2">
-        {episodes.map((episode) => <EpisodeCard key={episode.id} episode={episode} />)}
+        {episodes.map((episode) => (
+          <EpisodeCard key={episode.id} episode={episode} />
+        ))}
         <div className="frame-open grid min-h-48 place-content-center border-dashed p-8 text-center">
           <span className="label-mono text-muted-foreground">PRÓXIMO CAPÍTULO</span>
           <strong className="mt-3 font-display text-2xl uppercase">EP. 02 — O print fica</strong>
-          <span className="mt-2 text-sm text-muted-foreground">Intimidade, conversa privada e circulação.</span>
+          <span className="mt-2 text-sm text-muted-foreground">
+            Intimidade, conversa privada e circulação.
+          </span>
         </div>
       </div>
     </Section>

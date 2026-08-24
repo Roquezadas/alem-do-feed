@@ -3,7 +3,14 @@ import { Tag } from "@/components/Tag";
 
 const formats = ["FOTO", "VÍDEO", "PRINT", "ÁUDIO", "MEME", "STORY", "COMPARTILHAMENTO"] as const;
 const people = ["EU", "OUTRA PESSOA", "PESSOA PÚBLICA", "CRIANÇA/ADOLESCENTE"] as const;
-const contexts = ["COTIDIANO", "EVENTO PÚBLICO", "DENÚNCIA", "HUMOR", "PUBLICIDADE", "PRIVADO"] as const;
+const contexts = [
+  "COTIDIANO",
+  "EVENTO PÚBLICO",
+  "DENÚNCIA",
+  "HUMOR",
+  "PUBLICIDADE",
+  "PRIVADO",
+] as const;
 
 type Format = (typeof formats)[number];
 type Person = (typeof people)[number];
@@ -90,23 +97,35 @@ export function PostSimulator() {
 
   return (
     <div className="frame-open p-6 md:p-8">
-      <h3 className="font-display text-2xl font-extrabold tracking-tight uppercase">Posso postar?</h3>
+      <h3 className="font-display text-2xl font-extrabold tracking-tight uppercase">
+        Posso postar?
+      </h3>
       <p className="mt-2 text-sm text-muted-foreground">
         Escolha o cenário e veja a camada jurídica por trás dele.
       </p>
 
       <div className="mt-8 space-y-6">
-        <Group legend="O QUE VOCÊ VAI POSTAR?" options={formats} value={format} onChange={setFormat} />
+        <Group
+          legend="O QUE VOCÊ VAI POSTAR?"
+          options={formats}
+          value={format}
+          onChange={setFormat}
+        />
         <Group legend="QUEM APARECE?" options={people} value={person} onChange={setPerson} />
-        <Group legend="QUAL É O CONTEXTO?" options={contexts} value={context} onChange={setContext} />
+        <Group
+          legend="QUAL É O CONTEXTO?"
+          options={contexts}
+          value={context}
+          onChange={setContext}
+        />
       </div>
 
       <div className="mt-8 border-t border-dashed pt-6" aria-live="polite">
         <Tag tone={result.tone}>{result.level}</Tag>
         <p className="mt-4 max-w-2xl text-base leading-relaxed">{result.note}</p>
         <p className="mt-6 text-xs text-muted-foreground">
-          Isto é um guia educativo. Direito não funciona como um teste matemático: cada caso concreto
-          exige análise própria e este resultado não substitui orientação jurídica.
+          Isto é um guia educativo. Direito não funciona como um teste matemático: cada caso
+          concreto exige análise própria e este resultado não substitui orientação jurídica.
         </p>
       </div>
     </div>

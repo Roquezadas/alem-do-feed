@@ -93,7 +93,8 @@ export const topics: Topic[] = [
     definition:
       "Calúnia, difamação e injúria — condutas que podem acontecer inteiramente dentro de uma rede social.",
     legalBasis: "Código Penal, arts. 138 a 141.",
-    example: "Um comentário que acusa alguém de furto em uma publicação com milhares de visualizações.",
+    example:
+      "Um comentário que acusa alguém de furto em uma publicação com milhares de visualizações.",
     lawIds: ["cp-138-140"],
     caseIds: [],
     episodeIds: [],

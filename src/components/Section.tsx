@@ -20,7 +20,11 @@ export function Section({
   return (
     <section
       id={id}
-      className={cn("scroll-mt-24 border-t px-4 py-16 md:px-8 md:py-24", dark && "surface-dark", className)}
+      className={cn(
+        "scroll-mt-24 border-t px-4 py-16 md:px-8 md:py-24",
+        dark && "surface-dark",
+        className,
+      )}
     >
       <div className="mx-auto max-w-6xl">
         <header className="max-w-3xl">
@@ -29,7 +33,12 @@ export function Section({
             {title}
           </h2>
           {intro ? (
-            <p className={cn("mt-4 text-base leading-relaxed", dark ? "opacity-75" : "text-muted-foreground")}>
+            <p
+              className={cn(
+                "mt-4 text-base leading-relaxed",
+                dark ? "opacity-75" : "text-muted-foreground",
+              )}
+            >
               {intro}
             </p>
           ) : null}

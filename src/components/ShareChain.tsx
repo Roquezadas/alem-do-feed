@@ -32,7 +32,9 @@ export function ShareChain() {
               onClick={() => setActive(i)}
               aria-current={active === i}
               className={`label-mono border px-3 py-3 transition-colors ${
-                active === i ? "border-primary bg-primary text-primary-foreground" : "border-current/40"
+                active === i
+                  ? "border-primary bg-primary text-primary-foreground"
+                  : "border-current/40"
               }`}
             >
               {c.step}

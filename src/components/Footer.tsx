@@ -25,9 +25,7 @@ export function Footer() {
                 Além do Feed
               </span>
             </div>
-            <p className="mt-4 text-sm opacity-75">
-              Nem tudo que aparece no feed termina no feed.
-            </p>
+            <p className="mt-4 text-sm opacity-75">Nem tudo que aparece no feed termina no feed.</p>
           </div>
 
           <nav aria-label="Rodapé" className="grid grid-cols-2 gap-x-8 gap-y-3">
@@ -42,17 +40,32 @@ export function Footer() {
             <span className="label-mono opacity-60">REDES</span>
             <ul className="mt-3 space-y-2">
               <li>
-                <a href={social.instagram} target="_blank" rel="noopener noreferrer" className="label-mono">
+                <a
+                  href={social.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="label-mono"
+                >
                   INSTAGRAM ↗
                 </a>
               </li>
               <li>
-                <a href={social.youtube} target="_blank" rel="noopener noreferrer" className="label-mono">
+                <a
+                  href={social.youtube}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="label-mono"
+                >
                   YOUTUBE ↗
                 </a>
               </li>
               <li>
-                <a href={social.tiktok} target="_blank" rel="noopener noreferrer" className="label-mono">
+                <a
+                  href={social.tiktok}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="label-mono"
+                >
                   TIKTOK ↗
                 </a>
               </li>

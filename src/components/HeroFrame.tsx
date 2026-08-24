@@ -12,7 +12,10 @@ export function HeroFrame() {
 
   return (
     <section className="surface-dark relative overflow-hidden px-4 pt-14 pb-20 md:px-8 md:pt-20 md:pb-28">
-      <div className="grid-paper pointer-events-none absolute inset-0 opacity-40" aria-hidden="true" />
+      <div
+        className="grid-paper pointer-events-none absolute inset-0 opacity-40"
+        aria-hidden="true"
+      />
 
       <div className="relative mx-auto grid max-w-6xl gap-12 md:grid-cols-[1.15fr_1fr] md:items-center">
         <div>
@@ -38,7 +41,8 @@ export function HeroFrame() {
           </div>
 
           <p className="mt-8 max-w-md text-lg leading-relaxed opacity-85">
-            Nem tudo que aparece no feed termina no feed. Uma foto pode parecer só uma foto, até você descobrir o que existe por trás dela.
+            Nem tudo que aparece no feed termina no feed. Uma foto pode parecer só uma foto, até
+            você descobrir o que existe por trás dela.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">
@@ -49,10 +53,7 @@ export function HeroFrame() {
             >
               ENTRAR NO EPISÓDIO →
             </Link>
-            <Link
-              to="/o-que-pode-fazer"
-              className="label-mono border border-current px-6 py-4"
-            >
+            <Link to="/o-que-pode-fazer" className="label-mono border border-current px-6 py-4">
               EXPLORAR O TEMA
             </Link>
           </div>
@@ -68,7 +69,10 @@ export function HeroFrame() {
           />
           <div
             className="absolute -bottom-6 -left-2 max-w-[80%] border bg-[oklch(0.955_0.014_88)] p-4 text-[oklch(0.185_0.005_275)] transition-all duration-700 md:-left-10"
-            style={{ opacity: beyond ? 1 : 0, transform: beyond ? "none" : "translate3d(0,12px,0)" }}
+            style={{
+              opacity: beyond ? 1 : 0,
+              transform: beyond ? "none" : "translate3d(0,12px,0)",
+            }}
           >
             <span className="label-mono text-primary">CAMADA OCULTA</span>
             <p className="mt-2 text-sm leading-relaxed">

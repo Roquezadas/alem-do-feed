@@ -17,7 +17,8 @@ export function EpisodeCard({ episode }: { episode: Episode }) {
           loading="lazy"
           width={1200}
           height={912}
-          className="aspect-[4/3] w-full object-cover"
+          className="w-full object-cover"
+          style={{ aspectRatio: "4 / 3" }}
         />
       ) : null}
 

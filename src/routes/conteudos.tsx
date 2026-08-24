@@ -5,7 +5,8 @@ import { FeedCard } from "@/components/cards/FeedCard";
 import { feedFilters, feedItems } from "@/data/feed";
 
 const title = "Feed editorial — Além do Feed";
-const description = "Conteúdos sobre redes sociais, Direito Digital, imagem, privacidade e responsabilidade.";
+const description =
+  "Conteúdos sobre redes sociais, Direito Digital, imagem, privacidade e responsabilidade.";
 
 export const Route = createFileRoute("/conteudos")({
   head: () => ({
@@ -22,7 +23,10 @@ export const Route = createFileRoute("/conteudos")({
 
 function Page() {
   const [filter, setFilter] = useState<(typeof feedFilters)[number]>("TUDO");
-  const visible = filter === "TUDO" ? feedItems : feedItems.filter((item) => item.tags.some((tag) => tag.toUpperCase() === filter));
+  const visible =
+    filter === "TUDO"
+      ? feedItems
+      : feedItems.filter((item) => item.tags.some((tag) => tag.toUpperCase() === filter));
 
   return (
     <Section

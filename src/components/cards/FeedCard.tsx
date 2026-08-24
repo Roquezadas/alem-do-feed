@@ -62,7 +62,10 @@ export function FeedCard({ item }: { item: FeedItem }) {
           )}
 
           {item.href ? (
-            <Link to={item.href} className="label-mono text-primary underline-offset-4 hover:underline">
+            <Link
+              to={item.href}
+              className="label-mono text-primary underline-offset-4 hover:underline"
+            >
               ABRIR PÁGINA
             </Link>
           ) : null}

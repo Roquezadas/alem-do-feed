@@ -37,7 +37,9 @@ export function BeforePosting() {
                 <span
                   aria-hidden="true"
                   className={`ml-auto flex h-6 w-6 shrink-0 items-center justify-center border ${
-                    active ? "border-primary bg-primary text-primary-foreground" : "border-current/40"
+                    active
+                      ? "border-primary bg-primary text-primary-foreground"
+                      : "border-current/40"
                   }`}
                 >
                   {active ? "✓" : ""}
@@ -49,9 +51,7 @@ export function BeforePosting() {
       </ul>
 
       <div className="md:w-56">
-        <p className="label-mono opacity-60">
-          {checked.length}/5 RESPONDIDAS
-        </p>
+        <p className="label-mono opacity-60">{checked.length}/5 RESPONDIDAS</p>
         <p className="mt-3 text-sm opacity-80">
           Se você travou em alguma delas, provavelmente ainda não é hora de publicar.
         </p>

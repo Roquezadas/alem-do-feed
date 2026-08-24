@@ -17,7 +17,8 @@ export function SocialCard({ post }: { post: SocialPost }) {
           title={post.caption}
           loading="lazy"
           allowFullScreen
-          className="aspect-[9/16] w-full"
+          className="w-full"
+          style={{ aspectRatio: "9 / 16" }}
         />
       </div>
     );
@@ -31,7 +32,8 @@ export function SocialCard({ post }: { post: SocialPost }) {
       </div>
 
       <div
-        className="grid-paper mt-4 flex aspect-[4/5] items-end p-4 text-muted-foreground"
+        className="grid-paper mt-4 flex items-end p-4 text-muted-foreground"
+        style={{ aspectRatio: "4 / 5" }}
         aria-hidden="true"
       >
         <span className="label-mono">O FEED MOSTRA.</span>

@@ -1,14 +1,7 @@
 export type RiskLevel = "permitido" | "depende" | "risco";
 
 export type ContentType =
-  | "episodio"
-  | "lei"
-  | "caso"
-  | "pergunta"
-  | "mito"
-  | "artigo"
-  | "bastidor"
-  | "social";
+  "episodio" | "lei" | "caso" | "pergunta" | "mito" | "artigo" | "bastidor" | "social";
 
 export interface Episode {
   id: string;

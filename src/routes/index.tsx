@@ -84,7 +84,10 @@ function Home() {
             <LawCard key={l.id} law={l} />
           ))}
         </div>
-        <Link to="/leis" className="label-mono mt-8 inline-block border border-foreground px-5 py-4">
+        <Link
+          to="/leis"
+          className="label-mono mt-8 inline-block border border-foreground px-5 py-4"
+        >
           VER TODA A LEGISLAÇÃO →
         </Link>
       </Section>
@@ -126,7 +129,10 @@ function Home() {
             <MythCard key={m.id} item={m} />
           ))}
         </div>
-        <Link to="/mitos" className="label-mono mt-8 inline-block border border-foreground px-5 py-4">
+        <Link
+          to="/mitos"
+          className="label-mono mt-8 inline-block border border-foreground px-5 py-4"
+        >
           VER TODOS OS MITOS →
         </Link>
       </Section>
@@ -161,7 +167,10 @@ function Home() {
             { t: "PUBLICAÇÃO", d: "O conteúdo entra no ar e alcança o primeiro público." },
             { t: "PRINT", d: "Alguém salva. A partir daqui você já não controla as cópias." },
             { t: "REPOST", d: "O conteúdo ganha novos contextos e novas legendas." },
-            { t: "REMOÇÃO", d: "Apagar interrompe a circulação oficial. O resto continua existindo." },
+            {
+              t: "REMOÇÃO",
+              d: "Apagar interrompe a circulação oficial. O resto continua existindo.",
+            },
           ].map((l, i) => (
             <div
               key={l.t}
