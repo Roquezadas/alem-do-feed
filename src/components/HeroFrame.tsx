@@ -4,14 +4,29 @@ import heroLayers from "@/assets/hero-layers.jpg";
 
 export function HeroFrame() {
   const [beyond, setBeyond] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
     const t = window.setTimeout(() => setBeyond(true), 1400);
-    return () => window.clearTimeout(t);
+    const onScroll = () => {
+      const progress = Math.min(window.scrollY / Math.max(window.innerHeight, 1), 1);
+      setScrollProgress(progress);
+      if (progress > 0.08) setBeyond(true);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.clearTimeout(t);
+      window.removeEventListener("scroll", onScroll);
+    };
   }, []);
 
   return (
-    <section className="surface-dark relative overflow-hidden px-4 pt-14 pb-20 md:px-8 md:pt-20 md:pb-28">
+    <section className="hero-frame surface-dark relative overflow-hidden px-4 pt-14 pb-20 md:px-8 md:pt-20 md:pb-28">
+      <div
+        className="hero-progress"
+        style={{ transform: `scaleX(${scrollProgress})` }}
+        aria-hidden="true"
+      />
       <div
         className="grid-paper pointer-events-none absolute inset-0 opacity-40"
         aria-hidden="true"
@@ -23,13 +38,15 @@ export function HeroFrame() {
             {beyond ? "O QUE EXISTE ALÉM" : "O QUE VOCÊ VÊ"}
           </p>
 
-          <h1 className="mt-5 max-w-xl font-display text-5xl leading-[0.86] font-extrabold tracking-tight uppercase md:text-8xl">
+          <h1 className="reveal-mask mt-5 max-w-xl font-display text-5xl leading-[0.86] font-extrabold tracking-tight uppercase md:text-8xl">
             Além do Feed
           </h1>
 
           <div
             className="mt-8 inline-block border p-6 transition-transform duration-700 md:p-10"
-            style={{ transform: beyond ? "translate3d(10px,-10px,0)" : "none" }}
+            style={{
+              transform: `translate3d(${10 + scrollProgress * 8}px,${-10 - scrollProgress * 8}px,0)`,
+            }}
             onMouseEnter={() => setBeyond(true)}
           >
             <span className="label-mono opacity-60">EP. 01 · DIREITO À IMAGEM</span>
@@ -65,7 +82,8 @@ export function HeroFrame() {
             alt="Camadas de molduras sobrepostas em que uma imagem escapa do enquadramento"
             width={1200}
             height={1408}
-            className="w-full border object-cover"
+            className="hero-image w-full border object-cover"
+            style={{ transform: `scale(${1 + scrollProgress * 0.035})` }}
           />
           <div
             className="absolute -bottom-6 -left-2 max-w-[80%] border bg-[oklch(0.955_0.014_88)] p-4 text-[oklch(0.185_0.005_275)] transition-all duration-700 md:-left-10"

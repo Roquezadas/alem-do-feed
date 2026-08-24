@@ -16,6 +16,9 @@ import { cases } from "@/data/cases";
 import { myths } from "@/data/myths";
 import { episodes } from "@/data/episodes";
 import { feedItems, socialPosts } from "@/data/feed";
+import { ConsequenceTimeline } from "@/components/ConsequenceTimeline";
+import { EditorialReveal } from "@/components/EditorialReveal";
+import { QuestionStory } from "@/components/QuestionStory";
 
 const title = "Além do Feed — Direito Digital, redes sociais e proteção da imagem";
 const description =
@@ -61,8 +64,11 @@ function Home() {
         title="O que pode fazer?"
         intro="Situações comuns de rede social e o limite jurídico de cada uma. Abra o card para ver o fundamento."
       >
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {questions.slice(0, 6).map((q) => (
+        <EditorialReveal>
+          <QuestionStory />
+        </EditorialReveal>
+        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {questions.slice(4, 6).map((q) => (
             <QuestionCard key={q.id} item={q} />
           ))}
         </div>
@@ -162,27 +168,7 @@ function Home() {
         title="O feed não esquece"
         intro="Uma publicação some da timeline. As cópias, não."
       >
-        <div className="grid gap-4 md:grid-cols-4">
-          {[
-            { t: "PUBLICAÇÃO", d: "O conteúdo entra no ar e alcança o primeiro público." },
-            { t: "PRINT", d: "Alguém salva. A partir daqui você já não controla as cópias." },
-            { t: "REPOST", d: "O conteúdo ganha novos contextos e novas legendas." },
-            {
-              t: "REMOÇÃO",
-              d: "Apagar interrompe a circulação oficial. O resto continua existindo.",
-            },
-          ].map((l, i) => (
-            <div
-              key={l.t}
-              className="border p-5"
-              style={{ opacity: 1 - i * 0.14, transform: `translateY(${i * 6}px)` }}
-            >
-              <span className="label-mono opacity-60">CAMADA 0{i + 1}</span>
-              <h3 className="mt-3 text-lg font-bold">{l.t}</h3>
-              <p className="mt-2 text-sm opacity-80">{l.d}</p>
-            </div>
-          ))}
-        </div>
+        <ConsequenceTimeline />
       </Section>
 
       <Section
