@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { Link } from "@tanstack/react-router";
+import { Link, useLocation } from "@tanstack/react-router";
 import { Mark } from "@/components/brand/Mark";
 import { SearchDialog } from "@/components/SearchDialog";
 
 export const navItems = [
+  { to: "/feed-experimental", label: "EXPERIÊNCIA" },
   { to: "/o-que-pode-fazer", label: "O QUE PODE FAZER?" },
   { to: "/entenda", label: "ENTENDA" },
   { to: "/episodios", label: "EPISÓDIOS" },
@@ -14,6 +15,9 @@ export const navItems = [
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const location = useLocation();
+
+  if (location.pathname === "/feed-experimental") return null;
 
   return (
     <header className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur">
@@ -43,10 +47,10 @@ export function Header() {
         <div className="ml-auto flex items-center gap-2 lg:ml-0">
           <SearchDialog />
           <Link
-            to="/conteudos"
+            to="/feed-experimental"
             className="label-mono hidden bg-primary px-4 py-3 text-primary-foreground sm:inline-block"
           >
-            IR ALÉM →
+            EXPERIMENTE →
           </Link>
           <button
             type="button"

@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as ConteudosRouteImport } from './routes/conteudos'
 import { Route as EntendaRouteImport } from './routes/entenda'
 import { Route as EpisodiosRouteImport } from './routes/episodios'
+import { Route as FeedExperimentalRouteImport } from './routes/feed-experimental'
 import { Route as JurisprudenciaRouteImport } from './routes/jurisprudencia'
 import { Route as LeisRouteImport } from './routes/leis'
 import { Route as MitosRouteImport } from './routes/mitos'
@@ -39,6 +40,11 @@ const EntendaRoute = EntendaRouteImport.update({
 const EpisodiosRoute = EpisodiosRouteImport.update({
   id: '/episodios',
   path: '/episodios',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FeedExperimentalRoute = FeedExperimentalRouteImport.update({
+  id: '/feed-experimental',
+  path: '/feed-experimental',
   getParentRoute: () => rootRouteImport,
 } as any)
 const JurisprudenciaRoute = JurisprudenciaRouteImport.update({
@@ -82,6 +88,7 @@ export interface FileRoutesByFullPath {
   '/conteudos': typeof ConteudosRoute
   '/entenda': typeof EntendaRoute
   '/episodios': typeof EpisodiosRouteWithChildren
+  '/feed-experimental': typeof FeedExperimentalRoute
   '/jurisprudencia': typeof JurisprudenciaRoute
   '/leis': typeof LeisRoute
   '/mitos': typeof MitosRoute
@@ -95,6 +102,7 @@ export interface FileRoutesByTo {
   '/conteudos': typeof ConteudosRoute
   '/entenda': typeof EntendaRoute
   '/episodios': typeof EpisodiosRouteWithChildren
+  '/feed-experimental': typeof FeedExperimentalRoute
   '/jurisprudencia': typeof JurisprudenciaRoute
   '/leis': typeof LeisRoute
   '/mitos': typeof MitosRoute
@@ -109,6 +117,7 @@ export interface FileRoutesById {
   '/conteudos': typeof ConteudosRoute
   '/entenda': typeof EntendaRoute
   '/episodios': typeof EpisodiosRouteWithChildren
+  '/feed-experimental': typeof FeedExperimentalRoute
   '/jurisprudencia': typeof JurisprudenciaRoute
   '/leis': typeof LeisRoute
   '/mitos': typeof MitosRoute
@@ -124,6 +133,7 @@ export interface FileRouteTypes {
     | '/conteudos'
     | '/entenda'
     | '/episodios'
+    | '/feed-experimental'
     | '/jurisprudencia'
     | '/leis'
     | '/mitos'
@@ -137,6 +147,7 @@ export interface FileRouteTypes {
     | '/conteudos'
     | '/entenda'
     | '/episodios'
+    | '/feed-experimental'
     | '/jurisprudencia'
     | '/leis'
     | '/mitos'
@@ -150,6 +161,7 @@ export interface FileRouteTypes {
     | '/conteudos'
     | '/entenda'
     | '/episodios'
+    | '/feed-experimental'
     | '/jurisprudencia'
     | '/leis'
     | '/mitos'
@@ -164,6 +176,7 @@ export interface RootRouteChildren {
   ConteudosRoute: typeof ConteudosRoute
   EntendaRoute: typeof EntendaRoute
   EpisodiosRoute: typeof EpisodiosRouteWithChildren
+  FeedExperimentalRoute: typeof FeedExperimentalRoute
   JurisprudenciaRoute: typeof JurisprudenciaRoute
   LeisRoute: typeof LeisRoute
   MitosRoute: typeof MitosRoute
@@ -200,6 +213,13 @@ declare module '@tanstack/react-router' {
       path: '/episodios'
       fullPath: '/episodios'
       preLoaderRoute: typeof EpisodiosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/feed-experimental': {
+      id: '/feed-experimental'
+      path: '/feed-experimental'
+      fullPath: '/feed-experimental'
+      preLoaderRoute: typeof FeedExperimentalRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/jurisprudencia': {
@@ -271,6 +291,7 @@ const rootRouteChildren: RootRouteChildren = {
   ConteudosRoute: ConteudosRoute,
   EntendaRoute: EntendaRoute,
   EpisodiosRoute: EpisodiosRouteWithChildren,
+  FeedExperimentalRoute: FeedExperimentalRoute,
   JurisprudenciaRoute: JurisprudenciaRoute,
   LeisRoute: LeisRoute,
   MitosRoute: MitosRoute,

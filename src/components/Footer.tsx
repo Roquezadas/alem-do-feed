@@ -1,8 +1,9 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useLocation } from "@tanstack/react-router";
 import { Mark } from "@/components/brand/Mark";
 import { social } from "@/data/feed";
 
 const links = [
+  { to: "/feed-experimental", label: "EXPERIÊNCIA" },
   { to: "/o-que-pode-fazer", label: "O QUE PODE FAZER?" },
   { to: "/entenda", label: "ENTENDA" },
   { to: "/leis", label: "LEIS" },
@@ -14,6 +15,10 @@ const links = [
 ] as const;
 
 export function Footer() {
+  const location = useLocation();
+
+  if (location.pathname === "/feed-experimental") return null;
+
   return (
     <footer className="surface-dark border-t px-4 py-14 md:px-8">
       <div className="mx-auto max-w-6xl">

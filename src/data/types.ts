@@ -115,3 +115,27 @@ export interface SocialPost {
   thumbnail?: string;
   embeddable?: boolean;
 }
+
+export type FeedAction =
+  "share" | "repost" | "report" | "ignore" | "ask" | "publish" | "edit" | "verify" | "authority";
+
+export type ExperimentalScenario = {
+  id: string;
+  type: "photo" | "video" | "screenshot" | "meme" | "minor" | "deepfake";
+  profile: string;
+  timestamp: string;
+  title: string;
+  description: string;
+  contentLabel: string;
+  metrics: { likes: number; comments: number; shares: number };
+  actions: { id: FeedAction; label: string; shortLabel?: string }[];
+  consequence: {
+    headline: string;
+    summary: string;
+    context: string;
+    legalTopics: string[];
+    risk: "low" | "attention" | "high";
+  };
+  layers: { label: string; title: string; body: string }[];
+  sources?: { label: string; url: string }[];
+};
