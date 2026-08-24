@@ -10,15 +10,35 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ConteudosRouteImport } from './routes/conteudos'
+import { Route as EntendaRouteImport } from './routes/entenda'
+import { Route as EpisodiosRouteImport } from './routes/episodios'
 import { Route as JurisprudenciaRouteImport } from './routes/jurisprudencia'
 import { Route as LeisRouteImport } from './routes/leis'
 import { Route as MitosRouteImport } from './routes/mitos'
 import { Route as OQuePodeFazerRouteImport } from './routes/o-que-pode-fazer'
 import { Route as QuemCompartilhouRouteImport } from './routes/quem-compartilhou'
+import { Route as SobreRouteImport } from './routes/sobre'
+import { Route as EpisodiosSlugRouteImport } from './routes/episodios/$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConteudosRoute = ConteudosRouteImport.update({
+  id: '/conteudos',
+  path: '/conteudos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EntendaRoute = EntendaRouteImport.update({
+  id: '/entenda',
+  path: '/entenda',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EpisodiosRoute = EpisodiosRouteImport.update({
+  id: '/episodios',
+  path: '/episodios',
   getParentRoute: () => rootRouteImport,
 } as any)
 const JurisprudenciaRoute = JurisprudenciaRouteImport.update({
@@ -46,66 +66,110 @@ const QuemCompartilhouRoute = QuemCompartilhouRouteImport.update({
   path: '/quem-compartilhou',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SobreRoute = SobreRouteImport.update({
+  id: '/sobre',
+  path: '/sobre',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EpisodiosSlugRoute = EpisodiosSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => EpisodiosRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/conteudos': typeof ConteudosRoute
+  '/entenda': typeof EntendaRoute
+  '/episodios': typeof EpisodiosRouteWithChildren
   '/jurisprudencia': typeof JurisprudenciaRoute
   '/leis': typeof LeisRoute
   '/mitos': typeof MitosRoute
   '/o-que-pode-fazer': typeof OQuePodeFazerRoute
   '/quem-compartilhou': typeof QuemCompartilhouRoute
+  '/sobre': typeof SobreRoute
+  '/episodios/$slug': typeof EpisodiosSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/conteudos': typeof ConteudosRoute
+  '/entenda': typeof EntendaRoute
+  '/episodios': typeof EpisodiosRouteWithChildren
   '/jurisprudencia': typeof JurisprudenciaRoute
   '/leis': typeof LeisRoute
   '/mitos': typeof MitosRoute
   '/o-que-pode-fazer': typeof OQuePodeFazerRoute
   '/quem-compartilhou': typeof QuemCompartilhouRoute
+  '/sobre': typeof SobreRoute
+  '/episodios/$slug': typeof EpisodiosSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/conteudos': typeof ConteudosRoute
+  '/entenda': typeof EntendaRoute
+  '/episodios': typeof EpisodiosRouteWithChildren
   '/jurisprudencia': typeof JurisprudenciaRoute
   '/leis': typeof LeisRoute
   '/mitos': typeof MitosRoute
   '/o-que-pode-fazer': typeof OQuePodeFazerRoute
   '/quem-compartilhou': typeof QuemCompartilhouRoute
+  '/sobre': typeof SobreRoute
+  '/episodios/$slug': typeof EpisodiosSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/conteudos'
+    | '/entenda'
+    | '/episodios'
     | '/jurisprudencia'
     | '/leis'
     | '/mitos'
     | '/o-que-pode-fazer'
     | '/quem-compartilhou'
+    | '/sobre'
+    | '/episodios/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/conteudos'
+    | '/entenda'
+    | '/episodios'
     | '/jurisprudencia'
     | '/leis'
     | '/mitos'
     | '/o-que-pode-fazer'
     | '/quem-compartilhou'
+    | '/sobre'
+    | '/episodios/$slug'
   id:
     | '__root__'
     | '/'
+    | '/conteudos'
+    | '/entenda'
+    | '/episodios'
     | '/jurisprudencia'
     | '/leis'
     | '/mitos'
     | '/o-que-pode-fazer'
     | '/quem-compartilhou'
+    | '/sobre'
+    | '/episodios/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ConteudosRoute: typeof ConteudosRoute
+  EntendaRoute: typeof EntendaRoute
+  EpisodiosRoute: typeof EpisodiosRouteWithChildren
   JurisprudenciaRoute: typeof JurisprudenciaRoute
   LeisRoute: typeof LeisRoute
   MitosRoute: typeof MitosRoute
   OQuePodeFazerRoute: typeof OQuePodeFazerRoute
   QuemCompartilhouRoute: typeof QuemCompartilhouRoute
+  SobreRoute: typeof SobreRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -115,6 +179,27 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/conteudos': {
+      id: '/conteudos'
+      path: '/conteudos'
+      fullPath: '/conteudos'
+      preLoaderRoute: typeof ConteudosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/entenda': {
+      id: '/entenda'
+      path: '/entenda'
+      fullPath: '/entenda'
+      preLoaderRoute: typeof EntendaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/episodios': {
+      id: '/episodios'
+      path: '/episodios'
+      fullPath: '/episodios'
+      preLoaderRoute: typeof EpisodiosRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/jurisprudencia': {
@@ -152,16 +237,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof QuemCompartilhouRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sobre': {
+      id: '/sobre'
+      path: '/sobre'
+      fullPath: '/sobre'
+      preLoaderRoute: typeof SobreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/episodios/$slug': {
+      id: '/episodios/$slug'
+      path: '/$slug'
+      fullPath: '/episodios/$slug'
+      preLoaderRoute: typeof EpisodiosSlugRouteImport
+      parentRoute: typeof EpisodiosRoute
+    }
   }
 }
 
+interface EpisodiosRouteChildren {
+  EpisodiosSlugRoute: typeof EpisodiosSlugRoute
+}
+
+const EpisodiosRouteChildren: EpisodiosRouteChildren = {
+  EpisodiosSlugRoute: EpisodiosSlugRoute,
+}
+
+const EpisodiosRouteWithChildren = EpisodiosRoute._addFileChildren(
+  EpisodiosRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ConteudosRoute: ConteudosRoute,
+  EntendaRoute: EntendaRoute,
+  EpisodiosRoute: EpisodiosRouteWithChildren,
   JurisprudenciaRoute: JurisprudenciaRoute,
   LeisRoute: LeisRoute,
   MitosRoute: MitosRoute,
   OQuePodeFazerRoute: OQuePodeFazerRoute,
   QuemCompartilhouRoute: QuemCompartilhouRoute,
+  SobreRoute: SobreRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

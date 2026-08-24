@@ -20,21 +20,25 @@ export function HeroFrame() {
             {beyond ? "O QUE EXISTE ALÉM" : "O QUE VOCÊ VÊ"}
           </p>
 
+          <h1 className="mt-5 max-w-xl font-display text-5xl leading-[0.86] font-extrabold tracking-tight uppercase md:text-8xl">
+            Além do Feed
+          </h1>
+
           <div
-            className="mt-6 inline-block border p-6 transition-transform duration-700 md:p-10"
+            className="mt-8 inline-block border p-6 transition-transform duration-700 md:p-10"
             style={{ transform: beyond ? "translate3d(10px,-10px,0)" : "none" }}
             onMouseEnter={() => setBeyond(true)}
           >
             <span className="label-mono opacity-60">EP. 01 · DIREITO À IMAGEM</span>
-            <h1 className="mt-4 text-5xl leading-[0.85] font-extrabold tracking-tighter uppercase md:text-8xl">
+            <h2 className="mt-4 text-5xl leading-[0.85] font-extrabold tracking-tighter uppercase md:text-8xl">
               Quem
               <br />
               autorizou?
-            </h1>
+            </h2>
           </div>
 
           <p className="mt-8 max-w-md text-lg leading-relaxed opacity-85">
-            Uma foto pode parecer só uma foto. Até você descobrir o que existe por trás dela.
+            Nem tudo que aparece no feed termina no feed. Uma foto pode parecer só uma foto, até você descobrir o que existe por trás dela.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">

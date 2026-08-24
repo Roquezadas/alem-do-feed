@@ -53,6 +53,7 @@ export function Header() {
             onClick={() => setOpen((v) => !v)}
             aria-expanded={open}
             aria-controls="menu-mobile"
+            aria-label={open ? "Fechar menu" : "Abrir menu"}
             className="label-mono border border-foreground px-3 py-3 lg:hidden"
           >
             {open ? "FECHAR" : "MENU"}
