@@ -16,10 +16,10 @@ import { Route as EpisodiosRouteImport } from './routes/episodios'
 import { Route as FeedExperimentalRouteImport } from './routes/feed-experimental'
 import { Route as JurisprudenciaRouteImport } from './routes/jurisprudencia'
 import { Route as LeisRouteImport } from './routes/leis'
+import { Route as SalaDeEvidenciasRouteImport } from './routes/sala-de-evidencias'
 import { Route as MitosRouteImport } from './routes/mitos'
 import { Route as OQuePodeFazerRouteImport } from './routes/o-que-pode-fazer'
 import { Route as QuemCompartilhouRouteImport } from './routes/quem-compartilhou'
-import { Route as SalaDeEvidenciasRouteImport } from './routes/sala-de-evidencias'
 import { Route as SobreRouteImport } from './routes/sobre'
 import { Route as EpisodiosSlugRouteImport } from './routes/episodios/$slug'
 
@@ -58,6 +58,11 @@ const LeisRoute = LeisRouteImport.update({
   path: '/leis',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SalaDeEvidenciasRoute = SalaDeEvidenciasRouteImport.update({
+  id: '/sala-de-evidencias',
+  path: '/sala-de-evidencias',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MitosRoute = MitosRouteImport.update({
   id: '/mitos',
   path: '/mitos',
@@ -71,11 +76,6 @@ const OQuePodeFazerRoute = OQuePodeFazerRouteImport.update({
 const QuemCompartilhouRoute = QuemCompartilhouRouteImport.update({
   id: '/quem-compartilhou',
   path: '/quem-compartilhou',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SalaDeEvidenciasRoute = SalaDeEvidenciasRouteImport.update({
-  id: '/sala-de-evidencias',
-  path: '/sala-de-evidencias',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SobreRoute = SobreRouteImport.update({
@@ -98,9 +98,9 @@ export interface FileRoutesByFullPath {
   '/jurisprudencia': typeof JurisprudenciaRoute
   '/leis': typeof LeisRoute
   '/mitos': typeof MitosRoute
+  '/sala-de-evidencias': typeof SalaDeEvidenciasRoute
   '/o-que-pode-fazer': typeof OQuePodeFazerRoute
   '/quem-compartilhou': typeof QuemCompartilhouRoute
-  '/sala-de-evidencias': typeof SalaDeEvidenciasRoute
   '/sobre': typeof SobreRoute
   '/episodios/$slug': typeof EpisodiosSlugRoute
 }
@@ -113,9 +113,9 @@ export interface FileRoutesByTo {
   '/jurisprudencia': typeof JurisprudenciaRoute
   '/leis': typeof LeisRoute
   '/mitos': typeof MitosRoute
+  '/sala-de-evidencias': typeof SalaDeEvidenciasRoute
   '/o-que-pode-fazer': typeof OQuePodeFazerRoute
   '/quem-compartilhou': typeof QuemCompartilhouRoute
-  '/sala-de-evidencias': typeof SalaDeEvidenciasRoute
   '/sobre': typeof SobreRoute
   '/episodios/$slug': typeof EpisodiosSlugRoute
 }
@@ -129,9 +129,9 @@ export interface FileRoutesById {
   '/jurisprudencia': typeof JurisprudenciaRoute
   '/leis': typeof LeisRoute
   '/mitos': typeof MitosRoute
+  '/sala-de-evidencias': typeof SalaDeEvidenciasRoute
   '/o-que-pode-fazer': typeof OQuePodeFazerRoute
   '/quem-compartilhou': typeof QuemCompartilhouRoute
-  '/sala-de-evidencias': typeof SalaDeEvidenciasRoute
   '/sobre': typeof SobreRoute
   '/episodios/$slug': typeof EpisodiosSlugRoute
 }
@@ -146,9 +146,9 @@ export interface FileRouteTypes {
     | '/jurisprudencia'
     | '/leis'
     | '/mitos'
+    | '/sala-de-evidencias'
     | '/o-que-pode-fazer'
     | '/quem-compartilhou'
-    | '/sala-de-evidencias'
     | '/sobre'
     | '/episodios/$slug'
   fileRoutesByTo: FileRoutesByTo
@@ -161,9 +161,9 @@ export interface FileRouteTypes {
     | '/jurisprudencia'
     | '/leis'
     | '/mitos'
+    | '/sala-de-evidencias'
     | '/o-que-pode-fazer'
     | '/quem-compartilhou'
-    | '/sala-de-evidencias'
     | '/sobre'
     | '/episodios/$slug'
   id:
@@ -176,9 +176,9 @@ export interface FileRouteTypes {
     | '/jurisprudencia'
     | '/leis'
     | '/mitos'
+    | '/sala-de-evidencias'
     | '/o-que-pode-fazer'
     | '/quem-compartilhou'
-    | '/sala-de-evidencias'
     | '/sobre'
     | '/episodios/$slug'
   fileRoutesById: FileRoutesById
@@ -192,9 +192,9 @@ export interface RootRouteChildren {
   JurisprudenciaRoute: typeof JurisprudenciaRoute
   LeisRoute: typeof LeisRoute
   MitosRoute: typeof MitosRoute
+  SalaDeEvidenciasRoute: typeof SalaDeEvidenciasRoute
   OQuePodeFazerRoute: typeof OQuePodeFazerRoute
   QuemCompartilhouRoute: typeof QuemCompartilhouRoute
-  SalaDeEvidenciasRoute: typeof SalaDeEvidenciasRoute
   SobreRoute: typeof SobreRoute
 }
 
@@ -315,9 +315,9 @@ const rootRouteChildren: RootRouteChildren = {
   JurisprudenciaRoute: JurisprudenciaRoute,
   LeisRoute: LeisRoute,
   MitosRoute: MitosRoute,
+  SalaDeEvidenciasRoute: SalaDeEvidenciasRoute,
   OQuePodeFazerRoute: OQuePodeFazerRoute,
   QuemCompartilhouRoute: QuemCompartilhouRoute,
-  SalaDeEvidenciasRoute: SalaDeEvidenciasRoute,
   SobreRoute: SobreRoute,
 }
 export const routeTree = rootRouteImport

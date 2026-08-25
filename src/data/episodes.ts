@@ -11,7 +11,7 @@ export const episodes: Episode[] = [
     description:
       "Uma foto sobe em segundos. A pergunta jurídica que ela abre pode durar anos. No primeiro episódio, discutimos o que muda quando outra pessoa aparece na sua publicação: contexto, finalidade, identificação, autorização e as consequências de errar a mão.",
     youtubeId: "",
-    instagramUrl: "https://instagram.com/alemdofeed",
+    instagramUrl: "https://instagram.com/alemd0feed",
     coverImage: coverEp01,
     date: "2026-08-18",
     duration: "42 min",
