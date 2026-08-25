@@ -28,32 +28,49 @@ function Page() {
   const visible = court === "TUDO" ? cases : cases.filter((c) => c.court === court);
 
   return (
-    <Section
-      label="JURISPRUDÊNCIA"
-      title="O que os tribunais dizem?"
-      intro="Só entram aqui decisões verificáveis, com processo identificado e link para a fonte oficial. Nada de jurisprudência inventada."
-    >
-      <div className="flex flex-wrap gap-2">
-        {(["TUDO", "STF", "STJ"] as const).map((c) => (
-          <button
-            key={c}
-            type="button"
-            onClick={() => setCourt(c)}
-            aria-pressed={court === c}
-            className={`label-mono border px-4 py-3 ${
-              court === c ? "border-foreground bg-foreground text-background" : "border-border"
-            }`}
-          >
-            {c}
-          </button>
-        ))}
-      </div>
+    <>
+      <section className="case-question surface-dark px-4 py-20 md:px-8 md:py-32">
+        <div className="mx-auto max-w-7xl">
+          <span className="label-mono text-primary">JURISPRUDÊNCIA / ARQUIVO 002</span>
+          <h1 className="mt-6 max-w-5xl text-5xl leading-[0.82] font-extrabold tracking-[-0.07em] uppercase md:text-8xl">
+            Quando a tela encontra
+            <br />
+            <span className="text-white/55">o tribunal?</span>
+          </h1>
+        </div>
+      </section>
+      <Section
+        label="JURISPRUDÊNCIA"
+        title="O que os tribunais dizem?"
+        intro="Só entram aqui decisões verificáveis, com processo identificado e link para a fonte oficial. Nada de jurisprudência inventada."
+      >
+        <div className="flex flex-wrap gap-2">
+          {(["TUDO", "STF", "STJ"] as const).map((c) => (
+            <button
+              key={c}
+              type="button"
+              onClick={() => setCourt(c)}
+              aria-pressed={court === c}
+              className={`label-mono border px-4 py-3 ${
+                court === c ? "border-foreground bg-foreground text-background" : "border-border"
+              }`}
+            >
+              {c}
+            </button>
+          ))}
+        </div>
 
-      <div className="mt-8 grid gap-4 lg:grid-cols-2">
-        {visible.map((c) => (
-          <CaseCard key={c.id} item={c} />
-        ))}
-      </div>
-    </Section>
+        <div className="case-editions mt-10">
+          {visible.map((c, index) => (
+            <div key={c.id} className="case-edition">
+              <span className="label-mono text-primary">
+                {String(index + 1).padStart(2, "0")} / {c.court}
+              </span>
+              <CaseCard item={c} />
+            </div>
+          ))}
+        </div>
+      </Section>
+    </>
   );
 }

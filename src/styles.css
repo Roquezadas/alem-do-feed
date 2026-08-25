@@ -1069,7 +1069,11 @@
   position: relative;
   overflow: hidden;
   background:
-    radial-gradient(circle at 78% 20%, color-mix(in oklab, var(--cobalt) 18%, transparent), transparent 25%),
+    radial-gradient(
+      circle at 78% 20%,
+      color-mix(in oklab, var(--cobalt) 18%, transparent),
+      transparent 25%
+    ),
     var(--ink);
 }
 
@@ -1162,7 +1166,10 @@
   border: 1px solid transparent;
   padding: 0.65rem 0.8rem;
   color: var(--muted-foreground);
-  transition: color 180ms ease, border-color 180ms ease, background 180ms ease;
+  transition:
+    color 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease;
 }
 
 .evidence-filter:hover,
@@ -1185,7 +1192,11 @@
   overflow: hidden;
   border: 1px solid var(--border);
   background:
-    radial-gradient(circle at 50% 50%, color-mix(in oklab, var(--cobalt) 7%, transparent), transparent 31%),
+    radial-gradient(
+      circle at 50% 50%,
+      color-mix(in oklab, var(--cobalt) 7%, transparent),
+      transparent 31%
+    ),
     var(--card);
 }
 
@@ -1196,8 +1207,16 @@
   pointer-events: none;
   opacity: 0.42;
   background-image:
-    linear-gradient(to right, color-mix(in oklab, var(--foreground) 7%, transparent) 1px, transparent 1px),
-    linear-gradient(to bottom, color-mix(in oklab, var(--foreground) 7%, transparent) 1px, transparent 1px);
+    linear-gradient(
+      to right,
+      color-mix(in oklab, var(--foreground) 7%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in oklab, var(--foreground) 7%, transparent) 1px,
+      transparent 1px
+    );
   background-size: 32px 32px;
 }
 
@@ -1225,18 +1244,35 @@
   stroke: color-mix(in oklab, var(--foreground) 18%, transparent);
   stroke-width: 0.12;
   vector-effect: non-scaling-stroke;
-  transition: stroke 180ms ease, opacity 180ms ease, stroke-width 180ms ease;
+  transition:
+    stroke 180ms ease,
+    opacity 180ms ease,
+    stroke-width 180ms ease;
 }
 
 .evidence-edge::selection {
   stroke: var(--cobalt);
 }
 
-.evidence-edge-fundamento.is-active { stroke: var(--cobalt); stroke-width: 0.25; }
-.evidence-edge-jurisprudencia.is-active { stroke: var(--cobalt); stroke-width: 0.25; }
-.evidence-edge-podcast.is-active { stroke: var(--foreground); stroke-width: 0.25; }
-.evidence-edge-relacionado.is-active { stroke: var(--coral); stroke-width: 0.25; }
-.evidence-edge.is-muted { opacity: 0.14; }
+.evidence-edge-fundamento.is-active {
+  stroke: var(--cobalt);
+  stroke-width: 0.25;
+}
+.evidence-edge-jurisprudencia.is-active {
+  stroke: var(--cobalt);
+  stroke-width: 0.25;
+}
+.evidence-edge-podcast.is-active {
+  stroke: var(--foreground);
+  stroke-width: 0.25;
+}
+.evidence-edge-relacionado.is-active {
+  stroke: var(--coral);
+  stroke-width: 0.25;
+}
+.evidence-edge.is-muted {
+  opacity: 0.14;
+}
 
 .evidence-graph-center-wrap,
 .evidence-graph-node-wrap {
@@ -1262,7 +1298,9 @@
   text-align: center;
   padding: 1.25rem;
   box-shadow: 10px 10px 0 color-mix(in oklab, var(--cobalt) 45%, transparent);
-  transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 220ms ease;
+  transition:
+    transform 220ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 220ms ease;
 }
 
 .evidence-core:hover,
@@ -1316,10 +1354,18 @@
   background: var(--foreground);
 }
 
-.evidence-node-law .evidence-node-accent { background: var(--cobalt); }
-.evidence-node-case .evidence-node-accent { background: var(--cobalt); }
-.evidence-node-episode .evidence-node-accent { background: var(--foreground); }
-.evidence-node-concept .evidence-node-accent { background: var(--coral); }
+.evidence-node-law .evidence-node-accent {
+  background: var(--cobalt);
+}
+.evidence-node-case .evidence-node-accent {
+  background: var(--cobalt);
+}
+.evidence-node-episode .evidence-node-accent {
+  background: var(--foreground);
+}
+.evidence-node-concept .evidence-node-accent {
+  background: var(--coral);
+}
 
 .evidence-detail {
   position: sticky;
@@ -1331,8 +1377,16 @@
 }
 
 @keyframes evidence-panel-in {
-  from { opacity: 0; transform: translateX(16px); clip-path: inset(0 0 0 8%); }
-  to { opacity: 1; transform: none; clip-path: inset(0); }
+  from {
+    opacity: 0;
+    transform: translateX(16px);
+    clip-path: inset(0 0 0 8%);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    clip-path: inset(0);
+  }
 }
 
 .evidence-legend-dot {
@@ -1341,11 +1395,25 @@
   border: 1px solid currentColor;
 }
 
-.evidence-dot-topic { background: var(--ink); }
-.evidence-dot-law { background: var(--cobalt); border-color: var(--cobalt); }
-.evidence-dot-case { background: var(--cobalt); border-color: var(--cobalt); border-radius: 50%; }
-.evidence-dot-episode { background: var(--foreground); }
-.evidence-dot-concept { background: var(--coral); border-color: var(--coral); }
+.evidence-dot-topic {
+  background: var(--ink);
+}
+.evidence-dot-law {
+  background: var(--cobalt);
+  border-color: var(--cobalt);
+}
+.evidence-dot-case {
+  background: var(--cobalt);
+  border-color: var(--cobalt);
+  border-radius: 50%;
+}
+.evidence-dot-episode {
+  background: var(--foreground);
+}
+.evidence-dot-concept {
+  background: var(--coral);
+  border-color: var(--coral);
+}
 
 @media (max-width: 1023px) {
   .evidence-controls,
@@ -1447,7 +1515,11 @@
   min-height: 22rem;
   border: 1px solid var(--border);
   background:
-    radial-gradient(circle at 50% 50%, color-mix(in oklab, var(--cobalt) 9%, transparent), transparent 32%),
+    radial-gradient(
+      circle at 50% 50%,
+      color-mix(in oklab, var(--cobalt) 9%, transparent),
+      transparent 32%
+    ),
     var(--card);
 }
 
@@ -1457,8 +1529,16 @@
   inset: 0;
   opacity: 0.45;
   background-image:
-    linear-gradient(to right, color-mix(in oklab, var(--foreground) 8%, transparent) 1px, transparent 1px),
-    linear-gradient(to bottom, color-mix(in oklab, var(--foreground) 8%, transparent) 1px, transparent 1px);
+    linear-gradient(
+      to right,
+      color-mix(in oklab, var(--foreground) 8%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in oklab, var(--foreground) 8%, transparent) 1px,
+      transparent 1px
+    );
   background-size: 28px 28px;
 }
 
@@ -1497,9 +1577,19 @@
   letter-spacing: 0.14em;
 }
 
-.evidence-teaser-node-1 { top: 18%; left: 14%; color: var(--cobalt); }
-.evidence-teaser-node-2 { top: 22%; right: 12%; }
-.evidence-teaser-node-3 { bottom: 17%; left: 18%; }
+.evidence-teaser-node-1 {
+  top: 18%;
+  left: 14%;
+  color: var(--cobalt);
+}
+.evidence-teaser-node-2 {
+  top: 22%;
+  right: 12%;
+}
+.evidence-teaser-node-3 {
+  bottom: 17%;
+  left: 18%;
+}
 
 .evidence-teaser-line {
   height: 1px;
@@ -1507,9 +1597,24 @@
   background: color-mix(in oklab, var(--foreground) 26%, transparent);
 }
 
-.evidence-teaser-line-a { width: 28%; top: 34%; left: 24%; transform: rotate(22deg); }
-.evidence-teaser-line-b { width: 27%; top: 36%; right: 23%; transform: rotate(-20deg); }
-.evidence-teaser-line-c { width: 30%; bottom: 31%; left: 28%; transform: rotate(-16deg); }
+.evidence-teaser-line-a {
+  width: 28%;
+  top: 34%;
+  left: 24%;
+  transform: rotate(22deg);
+}
+.evidence-teaser-line-b {
+  width: 27%;
+  top: 36%;
+  right: 23%;
+  transform: rotate(-20deg);
+}
+.evidence-teaser-line-c {
+  width: 30%;
+  bottom: 31%;
+  left: 28%;
+  transform: rotate(-16deg);
+}
 
 @media (max-width: 767px) {
   .evidence-teaser {
@@ -1524,4 +1629,628 @@
     display: grid;
     gap: 0.75rem;
   }
+}
+
+/* ================================================================
+   OPEN FRAME / EDITORIAL COMPOSITION
+   A frame is deliberately incomplete: it contains the visible layer,
+   while its displaced rule suggests what continues beyond it.
+   ================================================================ */
+:root {
+  --color-ink: #111214;
+  --color-paper: #f4f0e7;
+  --color-cobalt: #2037ff;
+  --color-coral: #ff665a;
+  --color-muted: #d9d7d0;
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2.5rem;
+  --space-xl: 4rem;
+  --space-2xl: clamp(5rem, 11vw, 10rem);
+  --motion-fast: 180ms;
+  --motion-normal: 420ms;
+  --motion-slow: 760ms;
+  --ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.open-frame {
+  position: relative;
+  isolation: isolate;
+  border: 1px solid currentColor;
+  background: var(--card);
+}
+.open-frame::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 42%;
+  height: 42%;
+  border: 1px solid var(--cobalt);
+  pointer-events: none;
+}
+.open-frame-top-right::after {
+  top: -0.8rem;
+  right: -0.8rem;
+  border-left: 0;
+  border-bottom: 0;
+}
+.open-frame-bottom-right::after {
+  right: -0.8rem;
+  bottom: -0.8rem;
+  border-top: 0;
+  border-left: 0;
+}
+.open-frame-top-left::after {
+  top: -0.8rem;
+  left: -0.8rem;
+  border-right: 0;
+  border-bottom: 0;
+}
+.open-frame-bottom-left::after {
+  bottom: -0.8rem;
+  left: -0.8rem;
+  border-top: 0;
+  border-right: 0;
+}
+.open-frame-media {
+  overflow: visible;
+}
+.open-frame-evidence::after {
+  border-color: var(--cobalt);
+  width: 56%;
+  height: 56%;
+}
+.open-frame-alert::after {
+  border-color: var(--coral);
+}
+.open-frame-animated {
+  transition: transform var(--motion-normal) var(--ease-editorial);
+}
+.open-frame-animated:hover {
+  transform: translate3d(-4px, -4px, 0);
+}
+
+.frame-open {
+  overflow: visible;
+  border-color: color-mix(in oklab, var(--foreground) 74%, transparent);
+  box-shadow: none !important;
+  transition:
+    transform var(--motion-fast) var(--ease-editorial),
+    border-color var(--motion-fast) ease;
+}
+.frame-open::before {
+  content: "";
+  position: absolute;
+  right: -1px;
+  bottom: -1px;
+  width: 24%;
+  height: 24%;
+  border-right: 2px solid var(--cobalt);
+  border-bottom: 2px solid var(--cobalt);
+  pointer-events: none;
+}
+.frame-open:hover {
+  transform: translate3d(-3px, -3px, 0);
+  border-color: var(--foreground);
+}
+.surface-dark .frame-open {
+  background: color-mix(in oklab, var(--ink) 88%, white);
+  border-color: color-mix(in oklab, white 42%, transparent);
+}
+
+.atmosphere-digital {
+  background: linear-gradient(
+    110deg,
+    color-mix(in oklab, var(--cobalt) 5%, var(--background)),
+    var(--background) 54%
+  );
+}
+.atmosphere-consequence {
+  background: linear-gradient(
+    110deg,
+    color-mix(in oklab, var(--coral) 7%, var(--background)),
+    var(--background) 54%
+  );
+}
+.editorial-section {
+  position: relative;
+}
+.editorial-section-head {
+  position: relative;
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: minmax(0, 1.2fr) minmax(15rem, 0.55fr);
+  align-items: end;
+}
+.editorial-section-index {
+  position: absolute;
+  right: 0;
+  bottom: -0.45em;
+  color: color-mix(in oklab, var(--foreground) 7%, transparent);
+  font-family: var(--font-display);
+  font-size: clamp(7rem, 18vw, 16rem);
+  font-weight: 800;
+  line-height: 0.7;
+  letter-spacing: -0.1em;
+  pointer-events: none;
+}
+
+.site-header {
+  transition:
+    padding var(--motion-fast) var(--ease-editorial),
+    background var(--motion-fast) ease;
+}
+.site-header nav a {
+  position: relative;
+}
+.site-header nav a::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -0.35rem;
+  left: 0;
+  height: 1px;
+  transform: scaleX(0);
+  transform-origin: left;
+  background: var(--cobalt);
+  transition: transform var(--motion-fast) var(--ease-editorial);
+}
+.site-header nav a:hover::after,
+.site-header nav a[aria-current="page"]::after {
+  transform: scaleX(1);
+}
+.site-footer {
+  overflow: hidden;
+}
+.footer-manifesto {
+  margin: 0 0 clamp(3rem, 8vw, 7rem);
+  color: color-mix(in oklab, white 20%, transparent);
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 9vw, 9rem);
+  font-weight: 800;
+  letter-spacing: -0.075em;
+  line-height: 0.75;
+  text-transform: uppercase;
+}
+.footer-manifesto span {
+  color: var(--cobalt);
+}
+
+.hero-frame {
+  min-height: min(56rem, calc(100vh - 4rem));
+}
+.hero-oversize {
+  position: absolute;
+  right: -0.07em;
+  bottom: -0.16em;
+  z-index: -1;
+  color: color-mix(in oklab, white 6%, transparent);
+  font-family: var(--font-display);
+  font-size: clamp(9rem, 27vw, 28rem);
+  font-weight: 800;
+  letter-spacing: -0.12em;
+  line-height: 0.68;
+}
+.hero-title {
+  text-wrap: balance;
+}
+.hero-episode {
+  background: color-mix(in oklab, var(--ink) 91%, white);
+}
+.hero-media-frame {
+  color: var(--ivory);
+}
+.hero-media-frame img {
+  display: block;
+  aspect-ratio: 0.85;
+}
+.hero-side-note {
+  position: absolute;
+  top: 8%;
+  right: -2.3rem;
+  writing-mode: vertical-rl;
+  color: color-mix(in oklab, white 50%, transparent);
+}
+
+.editorial-quiet {
+  position: relative;
+  overflow: hidden;
+}
+.editorial-quiet::after {
+  content: "";
+  display: block;
+  width: min(70%, 42rem);
+  height: 1px;
+  margin-top: 3rem;
+  background: var(--cobalt);
+}
+.editorial-quiet-copy {
+  max-width: 12ch;
+  font-size: clamp(3.25rem, 8.8vw, 9rem);
+  line-height: 0.8;
+  letter-spacing: -0.075em;
+}
+.editorial-quiet-copy span {
+  color: var(--cobalt);
+}
+.editorial-quiet-compact .editorial-quiet-copy {
+  max-width: 16ch;
+}
+.home-feed-scene {
+  position: relative;
+  background: var(--card);
+}
+.home-feed-stack {
+  position: relative;
+  min-height: 35rem;
+}
+.home-feed-post {
+  position: absolute;
+  width: min(26rem, 74%);
+}
+.home-feed-post .frame-open {
+  border: 0;
+}
+.home-feed-post-0 {
+  top: 1.5rem;
+  left: 0;
+  z-index: 1;
+}
+.home-feed-post-1 {
+  top: 7.5rem;
+  right: 0;
+  z-index: 2;
+}
+.home-feed-post-2 {
+  bottom: 0;
+  left: 18%;
+  z-index: 3;
+}
+.home-rupture {
+  position: relative;
+}
+.home-rupture::after {
+  content: "";
+  position: absolute;
+  top: 14%;
+  right: 10%;
+  width: 22vw;
+  height: 22vw;
+  border: 1px solid var(--coral);
+  transform: rotate(13deg);
+}
+.home-rupture-word {
+  position: absolute;
+  right: -0.055em;
+  bottom: -0.14em;
+  color: color-mix(in oklab, var(--coral) 26%, transparent);
+  font-family: var(--font-display);
+  font-size: clamp(7rem, 23vw, 23rem);
+  font-weight: 800;
+  letter-spacing: -0.13em;
+  line-height: 0.7;
+}
+.editorial-list {
+  display: grid;
+  gap: var(--space-sm);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.legal-hero,
+.case-question,
+.episodes-hero {
+  overflow: hidden;
+}
+.legal-editions,
+.case-editions,
+.question-editions,
+.myth-editions,
+.episode-editions {
+  display: grid;
+  gap: 1rem;
+}
+.legal-editions > div,
+.case-edition,
+.question-edition,
+.myth-edition {
+  position: relative;
+}
+.legal-editions > div {
+  display: grid;
+  grid-template-columns: 6.5rem minmax(0, 1fr);
+  align-items: start;
+}
+.legal-edition-number,
+.question-edition-number {
+  color: color-mix(in oklab, var(--foreground) 13%, transparent);
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 8vw, 7rem);
+  font-weight: 800;
+  letter-spacing: -0.08em;
+  line-height: 0.72;
+}
+.legal-edition-feature {
+  grid-column: span 2;
+}
+.legal-edition-feature .frame-open {
+  padding: clamp(1.5rem, 4vw, 3rem);
+}
+.case-editions {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem;
+}
+.case-edition:nth-child(3n) {
+  grid-column: span 2;
+  max-width: calc(50% - 1rem);
+}
+.case-edition > .label-mono {
+  display: block;
+  margin-bottom: 0.75rem;
+}
+.question-edition {
+  display: grid;
+  grid-template-columns: minmax(5rem, 0.22fr) minmax(0, 1fr);
+  align-items: stretch;
+  border-top: 1px solid var(--border);
+  padding: 1.25rem 0;
+}
+.question-edition .frame-open {
+  border: 0;
+  padding: clamp(1.25rem, 3vw, 2.25rem);
+  background: transparent;
+}
+.question-edition .frame-open::before {
+  display: none;
+}
+.question-edition:nth-child(odd) {
+  background: color-mix(in oklab, var(--cobalt) 3%, transparent);
+}
+.myth-editions {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.myth-edition:nth-child(4n + 1) {
+  grid-column: span 2;
+}
+.myth-edition > .label-mono {
+  margin: 0 0 0.75rem 1rem;
+  display: block;
+}
+.episode-editions {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem;
+}
+.episode-editions > :first-child {
+  grid-row: span 2;
+}
+.episode-editions .frame-open {
+  height: 100%;
+}
+
+.experimental-shell {
+  background: #0d0e18;
+  background-image: radial-gradient(
+    circle at 86% 10%,
+    color-mix(in oklab, var(--cobalt) 24%, transparent),
+    transparent 26%
+  );
+}
+.experimental-intro-frame::before {
+  border-color: var(--cobalt);
+}
+.experimental-consequence {
+  border-color: color-mix(in oklab, var(--coral) 55%, var(--border));
+}
+.experimental-layers article {
+  border-left-color: var(--cobalt);
+}
+.evidence-graph-shell {
+  border-color: color-mix(in oklab, var(--foreground) 52%, transparent);
+  min-height: 47rem;
+}
+.evidence-graph-shell::after {
+  content: "ARQUIVO VIVO / SIGA UMA LINHA";
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  color: color-mix(in oklab, var(--foreground) 36%, transparent);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.13em;
+}
+.evidence-core {
+  box-shadow: 14px 14px 0 color-mix(in oklab, var(--cobalt) 55%, transparent);
+}
+.evidence-node {
+  backdrop-filter: none;
+}
+.evidence-node-active {
+  box-shadow: 6px 6px 0 color-mix(in oklab, var(--cobalt) 40%, transparent);
+}
+
+@media (max-width: 767px) {
+  .open-frame::after {
+    width: 35%;
+    height: 35%;
+  }
+  .editorial-section-head {
+    grid-template-columns: 1fr;
+  }
+  .editorial-section-index {
+    font-size: 7rem;
+    opacity: 0.7;
+  }
+  .hero-frame {
+    min-height: auto;
+  }
+  .hero-side-note,
+  .hero-oversize {
+    display: none;
+  }
+  .hero-media-wrap {
+    margin-top: 1rem;
+  }
+  .editorial-quiet-copy {
+    font-size: clamp(3rem, 15vw, 5.25rem);
+  }
+  .home-feed-stack {
+    min-height: 28rem;
+    margin-top: 1rem;
+  }
+  .home-feed-post {
+    width: 86%;
+  }
+  .home-feed-post-0 {
+    top: 0;
+  }
+  .home-feed-post-1 {
+    top: 5.3rem;
+  }
+  .home-feed-post-2 {
+    left: 7%;
+  }
+  .home-rupture-word {
+    font-size: 8rem;
+  }
+  .editorial-list,
+  .case-editions,
+  .myth-editions,
+  .episode-editions {
+    grid-template-columns: 1fr;
+  }
+  .legal-editions > div,
+  .question-edition {
+    grid-template-columns: 4.5rem minmax(0, 1fr);
+  }
+  .legal-edition-feature,
+  .case-edition:nth-child(3n),
+  .myth-edition:nth-child(4n + 1) {
+    grid-column: auto;
+    max-width: none;
+  }
+  .case-edition:nth-child(3n) {
+    max-width: none;
+  }
+  .episode-editions > :first-child {
+    grid-row: auto;
+  }
+  .evidence-graph-shell::after {
+    display: none;
+  }
+}
+
+/* Feed Experimental: contrast correction. The immersive shell is dark only
+   during entry/reflection; decision screens return to a high-contrast paper. */
+.experimental-intro,
+.experimental-reflection {
+  background-color: #111214;
+  color: #f4f0e7;
+}
+
+.experimental-stage {
+  background: #f4f0e7;
+  color: #111214;
+}
+
+.experimental-intro .text-primary,
+.experimental-reflection .text-primary,
+.experimental-intro h1 em,
+.experimental-reflection h1 em,
+.experimental-reflection-layers {
+  color: #9aa8ff;
+}
+
+.experimental-intro-copy,
+.experimental-duration {
+  color: #d9d7d0;
+  opacity: 1;
+}
+
+.experimental-intro-frame {
+  border-color: rgb(244 240 231 / 72%);
+}
+
+.experimental-primary-action {
+  background: #2037ff;
+  border-color: #2037ff;
+  color: #fffdf8;
+}
+
+.experimental-primary-action:hover,
+.experimental-primary-action:focus-visible {
+  background: #3147ff;
+  color: #fffdf8;
+}
+
+.experimental-secondary-action {
+  color: #f4f0e7;
+}
+
+.experimental-stage-header,
+.experimental-progress-track {
+  border-color: #bbb8b0;
+  background-color: transparent;
+}
+
+.experimental-stage-intro p,
+.experimental-post .text-muted-foreground,
+.experimental-metrics,
+.experimental-post-tools,
+.experimental-disclaimer,
+.experimental-chosen p,
+.experimental-layers p,
+.experimental-domino-label {
+  color: #4b4a47;
+}
+
+.experimental-post {
+  border-color: #111214;
+  background: #fffdf8;
+  color: #111214;
+}
+
+.experimental-post-header .label-mono,
+.experimental-metrics .label-mono {
+  color: #55534f;
+}
+
+.experimental-content-frame {
+  background: #111214;
+  color: #f4f0e7;
+}
+
+.experimental-content-frame small {
+  color: #d9d7d0;
+  opacity: 1;
+}
+
+.experimental-action {
+  border-color: #9d9a92;
+  background: #fffdf8;
+  color: #111214;
+}
+
+.experimental-action:hover,
+.experimental-action:focus-visible {
+  border-color: #2037ff;
+  background: #e9edff;
+}
+
+.experimental-consequence {
+  border-color: #111214;
+  background: #fffdf8;
+  color: #111214;
+}
+
+.experimental-consequence .text-muted-foreground {
+  color: #4b4a47;
+}
+
+.experimental-sources a {
+  color: #1730ce;
+  font-weight: 700;
 }

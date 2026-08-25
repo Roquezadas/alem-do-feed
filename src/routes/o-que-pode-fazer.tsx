@@ -36,12 +36,15 @@ function Page() {
 
       <Section
         label="PERGUNTAS"
-        title="O que pode fazer?"
+        title="Perguntas não cabem em cartões pequenos."
         intro="As dúvidas que mais aparecem na nossa caixinha, respondidas com o fundamento correspondente."
       >
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {questions.map((q) => (
-            <QuestionCard key={q.id} item={q} />
+        <div className="question-editions">
+          {questions.map((q, index) => (
+            <div key={q.id} className="question-edition">
+              <span className="question-edition-number">{String(index + 1).padStart(2, "0")}</span>
+              <QuestionCard item={q} />
+            </div>
           ))}
         </div>
       </Section>

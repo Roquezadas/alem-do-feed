@@ -5,7 +5,11 @@ import { EvidenceDetail } from "./EvidenceDetail";
 import { EvidenceFilters } from "./EvidenceFilters";
 import { EvidenceGraph } from "./EvidenceGraph";
 import { EvidenceLegend } from "./EvidenceLegend";
-import { buildEvidenceGraph, evidenceRelationshipLabel, type EvidenceNodeType } from "@/lib/evidenceGraph";
+import {
+  buildEvidenceGraph,
+  evidenceRelationshipLabel,
+  type EvidenceNodeType,
+} from "@/lib/evidenceGraph";
 import { topics } from "@/data/topics";
 
 const INITIAL_TOPIC = "direito-a-imagem";
@@ -35,7 +39,9 @@ export function EvidenceRoom() {
   }, [topicSlug]);
 
   const graph = useMemo(() => buildEvidenceGraph(topicSlug), [topicSlug]);
-  const activeNode = graph?.nodes.find((node) => node.id === activeId) ?? (graph?.center.id === activeId ? graph.center : null);
+  const activeNode =
+    graph?.nodes.find((node) => node.id === activeId) ??
+    (graph?.center.id === activeId ? graph.center : null);
   const activeEdge = graph?.edges.find((edge) => edge.to === activeId);
 
   const visibleIds = useMemo(() => {
@@ -100,13 +106,21 @@ export function EvidenceRoom() {
                 <div className="evidence-hero-frame-back" aria-hidden="true" />
                 <p className="label-mono text-coral">SIGA AS CONEXÕES.</p>
                 <p className="mt-5 text-xl leading-relaxed text-white/80 md:text-2xl">
-                  Uma pergunta raramente termina em uma única resposta. Aqui, cada conceito leva a uma lei, um caso, um episódio ou outra discussão.
+                  Uma pergunta raramente termina em uma única resposta. Aqui, cada conceito leva a
+                  uma lei, um caso, um episódio ou outra discussão.
                 </p>
                 <div className="mt-8 flex flex-wrap items-center gap-3">
-                  <Link to="/feed-experimental" className="label-mono bg-primary px-4 py-3 text-primary-foreground">
+                  <Link
+                    to="/feed-experimental"
+                    className="label-mono bg-primary px-4 py-3 text-primary-foreground"
+                  >
                     VER A PRÁTICA →
                   </Link>
-                  <button type="button" onClick={copyLink} className="label-mono border border-white/25 px-4 py-3 text-white">
+                  <button
+                    type="button"
+                    onClick={copyLink}
+                    className="label-mono border border-white/25 px-4 py-3 text-white"
+                  >
                     {copied ? "LINK COPIADO ✓" : "COMPARTILHAR CONEXÃO"}
                   </button>
                 </div>
@@ -121,7 +135,10 @@ export function EvidenceRoom() {
           <div className="grid gap-5 md:grid-cols-[auto_1fr_auto] md:items-end">
             <div>
               <p className="label-mono text-primary">EXPLORAR TEMA</p>
-              <label className="mt-2 block text-3xl font-extrabold tracking-tight" htmlFor="evidence-topic">
+              <label
+                className="mt-2 block text-3xl font-extrabold tracking-tight"
+                htmlFor="evidence-topic"
+              >
                 O que você quer investigar?
               </label>
             </div>
@@ -137,13 +154,22 @@ export function EvidenceRoom() {
                 </option>
               ))}
             </select>
-            <button type="button" onClick={() => setExpanded((value) => !value)} className="label-mono inline-flex items-center justify-center gap-2 border border-foreground px-4 py-3">
+            <button
+              type="button"
+              onClick={() => setExpanded((value) => !value)}
+              className="label-mono inline-flex items-center justify-center gap-2 border border-foreground px-4 py-3"
+            >
               <Maximize2 size={14} /> {expanded ? "SAIR DA SALA" : "EXPANDIR SALA"}
             </button>
           </div>
 
           <div className="mt-8">
-            <EvidenceFilters query={query} onQueryChange={setQuery} type={filter} onTypeChange={setFilter} />
+            <EvidenceFilters
+              query={query}
+              onQueryChange={setQuery}
+              type={filter}
+              onTypeChange={setFilter}
+            />
           </div>
         </div>
       </section>
@@ -154,17 +180,24 @@ export function EvidenceRoom() {
             <div>
               <p className="label-mono text-primary">MAPA DA QUESTÃO</p>
               <h2 className="mt-2 max-w-3xl text-4xl leading-none font-extrabold tracking-tight md:text-6xl">
-                Siga o fio de <span className="text-primary">{graph.center.title.toLowerCase()}</span>.
+                Siga o fio de{" "}
+                <span className="text-primary">{graph.center.title.toLowerCase()}</span>.
               </h2>
               <p className="mt-4 max-w-2xl text-muted-foreground">
-                Selecione uma peça para descobrir onde ela leva. As linhas mostram relações de fundamento, jurisprudência, podcast e conceitos relacionados.
+                Selecione uma peça para descobrir onde ela leva. As linhas mostram relações de
+                fundamento, jurisprudência, podcast e conceitos relacionados.
               </p>
             </div>
             <EvidenceLegend />
           </div>
 
           <div className="evidence-workspace">
-            <EvidenceGraph graph={graph} activeId={activeId} visibleIds={visibleIds} onSelect={handleSelect} />
+            <EvidenceGraph
+              graph={graph}
+              activeId={activeId}
+              visibleIds={visibleIds}
+              onSelect={handleSelect}
+            />
 
             {activeNode ? (
               <EvidenceDetail
@@ -181,7 +214,11 @@ export function EvidenceRoom() {
               {visibleIds.size} {visibleIds.size === 1 ? "CONEXÃO VISÍVEL" : "CONEXÕES VISÍVEIS"}
             </div>
             {!allVisible && graph.nodes.length > visibleIds.size ? (
-              <button type="button" onClick={() => setExpanded(true)} className="label-mono inline-flex items-center gap-2 bg-foreground px-4 py-3 text-background">
+              <button
+                type="button"
+                onClick={() => setExpanded(true)}
+                className="label-mono inline-flex items-center gap-2 bg-foreground px-4 py-3 text-background"
+              >
                 MOSTRAR TODAS AS CONEXÕES <ArrowDownRight size={14} />
               </button>
             ) : (
@@ -229,7 +266,10 @@ export function EvidenceRoom() {
             <span className="text-primary">Estão nas conexões entre elas.</span>
           </h2>
           <div className="mt-10 flex flex-wrap justify-center gap-3">
-            <Link to="/feed-experimental" className="label-mono bg-primary px-5 py-4 text-primary-foreground">
+            <Link
+              to="/feed-experimental"
+              className="label-mono bg-primary px-5 py-4 text-primary-foreground"
+            >
               IR PARA O FEED EXPERIMENTAL →
             </Link>
             <Link to="/episodios" className="label-mono border border-foreground px-5 py-4">

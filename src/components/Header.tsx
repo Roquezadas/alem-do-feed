@@ -21,8 +21,8 @@ export function Header() {
   if (location.pathname === "/feed-experimental") return null;
 
   return (
-    <header className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center gap-4 px-4 py-3 md:px-8">
+    <header className="site-header sticky top-0 z-50 border-b bg-background/95 backdrop-blur">
+      <div className="mx-auto flex max-w-7xl items-center gap-4 px-4 py-3 md:px-8">
         <Link to="/" className="flex items-center gap-2" aria-label="Além do Feed — página inicial">
           <Mark className="h-7 w-7" />
           <span className="font-display text-sm leading-none font-extrabold tracking-tight uppercase">
@@ -51,7 +51,7 @@ export function Header() {
             to="/feed-experimental"
             className="label-mono hidden bg-primary px-4 py-3 text-primary-foreground sm:inline-block"
           >
-            EXPERIMENTE →
+            IR ALÉM →
           </Link>
           <button
             type="button"

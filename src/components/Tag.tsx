@@ -1,6 +1,16 @@
 import { cn } from "@/lib/utils";
 
-type Tone = "default" | "cobalt" | "coral" | "ink" | "outline";
+type Tone =
+  | "default"
+  | "cobalt"
+  | "coral"
+  | "ink"
+  | "outline"
+  | "editorial"
+  | "legal"
+  | "evidence"
+  | "risk"
+  | "digital";
 
 const tones: Record<Tone, string> = {
   default: "bg-muted text-foreground",
@@ -8,6 +18,11 @@ const tones: Record<Tone, string> = {
   coral: "bg-accent text-accent-foreground",
   ink: "bg-foreground text-background",
   outline: "border border-current text-muted-foreground",
+  editorial: "bg-muted text-foreground",
+  legal: "bg-foreground text-background",
+  evidence: "border border-primary text-primary",
+  risk: "bg-accent text-accent-foreground",
+  digital: "bg-primary text-primary-foreground",
 };
 
 export function Tag({

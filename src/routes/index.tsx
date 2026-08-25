@@ -20,6 +20,7 @@ import { ConsequenceTimeline } from "@/components/ConsequenceTimeline";
 import { EditorialReveal } from "@/components/EditorialReveal";
 import { QuestionStory } from "@/components/QuestionStory";
 import { EvidenceTeaser } from "@/components/evidence/EvidenceTeaser";
+import { OpenFrame } from "@/components/OpenFrame";
 
 const title = "Além do Feed — Direito Digital, redes sociais e proteção da imagem";
 const description =
@@ -59,8 +60,75 @@ function Home() {
     <>
       <HeroFrame />
 
+      <section className="editorial-quiet px-4 py-28 md:px-8 md:py-44">
+        <div className="mx-auto max-w-7xl">
+          <span className="label-mono text-primary">01 / A SUPERFÍCIE</span>
+          <p className="editorial-quiet-copy mt-8 font-display font-extrabold uppercase">
+            Você vê.
+            <br />
+            <span>Mas o que vem depois?</span>
+          </p>
+        </div>
+      </section>
+
+      <section className="home-feed-scene overflow-hidden px-4 py-20 md:px-8 md:py-32">
+        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.66fr_1.34fr] lg:items-end">
+          <div className="relative z-10">
+            <span className="label-mono text-primary">02 / O FEED</span>
+            <h2 className="mt-5 font-display text-5xl leading-[0.82] font-extrabold tracking-[-0.07em] uppercase md:text-7xl">
+              Tudo parece
+              <br />
+              caber em um post.
+            </h2>
+            <p className="mt-6 max-w-sm text-muted-foreground">
+              Uma imagem, uma legenda, um clique. A superfície organiza o que você vê — e deixa
+              quase todo o resto de fora.
+            </p>
+            <Link
+              to="/feed-experimental"
+              className="label-mono mt-8 inline-block bg-primary px-5 py-4 text-primary-foreground"
+            >
+              ENTRAR NO FEED →
+            </Link>
+          </div>
+          <div className="home-feed-stack" aria-label="Exemplos de publicações em camadas">
+            {feedItems.slice(0, 3).map((item, index) => (
+              <OpenFrame
+                key={item.id}
+                variant={index === 2 ? "alert" : "default"}
+                orientation={index === 1 ? "top-right" : "bottom-right"}
+                className={`home-feed-post home-feed-post-${index}`}
+              >
+                <FeedCard item={item} />
+              </OpenFrame>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="home-rupture surface-dark overflow-hidden px-4 py-28 md:px-8 md:py-44">
+        <div className="mx-auto max-w-7xl">
+          <span className="label-mono text-coral">03 / QUANDO CIRCULA</span>
+          <p className="home-rupture-word" aria-hidden="true">
+            DIREITO
+          </p>
+          <div className="relative z-10 max-w-2xl">
+            <h2 className="text-5xl leading-[0.84] font-extrabold tracking-[-0.065em] uppercase md:text-7xl">
+              O feed mostra.
+              <br />
+              <span className="text-primary">O Direito pergunta.</span>
+            </h2>
+            <p className="mt-7 max-w-lg text-lg leading-relaxed text-white/75">
+              Quem aparece? Havia contexto? Houve consentimento? O que se espalha também atravessa
+              pessoas, direitos e consequências.
+            </p>
+          </div>
+        </div>
+      </section>
+
       <Section
         id="o-que-pode-fazer"
+        index="04"
         label="EXPERIÊNCIA JURÍDICA"
         title="O que pode fazer?"
         intro="Situações comuns de rede social e o limite jurídico de cada uma. Abra o card para ver o fundamento."
@@ -68,7 +136,7 @@ function Home() {
         <EditorialReveal>
           <QuestionStory />
         </EditorialReveal>
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid gap-4 sm:grid-cols-2">
           {questions.slice(4, 6).map((q) => (
             <QuestionCard key={q.id} item={q} />
           ))}
@@ -82,11 +150,12 @@ function Home() {
       </Section>
 
       <Section
+        index="05"
         label="LEGISLAÇÃO"
         title="O que a lei diz?"
         intro="Da Constituição à LGPD: os textos que sustentam qualquer discussão sobre imagem na internet."
       >
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="editorial-list mt-2">
           {laws.slice(0, 3).map((l) => (
             <LawCard key={l.id} law={l} />
           ))}
@@ -100,6 +169,7 @@ function Home() {
       </Section>
 
       <Section
+        index="06"
         label="JURISPRUDÊNCIA"
         title="O que os tribunais dizem?"
         intro="Decisões verificáveis do STF e do STJ, explicadas sem juridiquês e sempre com link para a fonte oficial."
@@ -118,6 +188,7 @@ function Home() {
       </Section>
 
       <Section
+        index="07"
         label="ARQUIVO JURÍDICO"
         title="Siga as conexões."
         intro="Uma publicação parece um ponto. O Direito revela uma rede. Explore a Sala de Evidências e conecte conceitos, leis, casos e episódios."
@@ -127,6 +198,7 @@ function Home() {
 
       <Section
         dark
+        index="08"
         label="CHECKLIST"
         title="Antes de postar"
         intro="Cinco perguntas que você deveria fazer antes de publicar alguém."
@@ -135,6 +207,7 @@ function Home() {
       </Section>
 
       <Section
+        index="09"
         label="DESMONTANDO"
         title="Mitos do feed"
         intro="Frases que todo mundo repete — e o que o Direito responde a cada uma."
@@ -154,10 +227,11 @@ function Home() {
 
       <Section
         label="PODCAST"
+        index="10"
         title="Episódios"
         intro="Cada episódio começa em uma publicação qualquer e termina em uma consequência jurídica concreta."
       >
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid gap-8 md:grid-cols-2">
           {episodes.map((e) => (
             <EpisodeCard key={e.id} episode={e} />
           ))}
@@ -173,6 +247,7 @@ function Home() {
 
       <Section
         dark
+        index="11"
         label="PERMANÊNCIA"
         title="O feed não esquece"
         intro="Uma publicação some da timeline. As cópias, não."
@@ -181,6 +256,7 @@ function Home() {
       </Section>
 
       <Section
+        index="12"
         label="RESPONSABILIDADE"
         title="Quem compartilhou?"
         intro="Quem publicou primeiro é sempre o único responsável? Atravesse a cadeia."
@@ -190,6 +266,7 @@ function Home() {
 
       <Section
         label="FEED"
+        index="13"
         title="O feed real"
         intro="Nossos conteúdos em camadas: post na superfície, contexto, direito e consequência logo abaixo."
       >
@@ -206,8 +283,20 @@ function Home() {
         </Link>
       </Section>
 
+      <section className="editorial-quiet editorial-quiet-compact surface-dark px-4 py-24 md:px-8 md:py-36">
+        <div className="mx-auto max-w-7xl">
+          <span className="label-mono text-coral">PONTO DE PAUSA</span>
+          <p className="editorial-quiet-copy mt-7 font-display font-extrabold uppercase">
+            Publicar é fácil.
+            <br />
+            <span>Entender o depois muda tudo.</span>
+          </p>
+        </div>
+      </section>
+
       <Section
         label="REDES"
+        index="14"
         title="Do feed para cá"
         intro="Os conteúdos curtos do projeto continuam nas plataformas. Aqui eles ganham a camada jurídica."
       >

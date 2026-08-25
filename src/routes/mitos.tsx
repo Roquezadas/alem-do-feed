@@ -29,9 +29,14 @@ function Page() {
       title="Mitos do feed"
       intro="Abra cada card para ver o veredito e a explicação jurídica."
     >
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {myths.map((m) => (
-          <MythCard key={m.id} item={m} />
+      <div className="myth-editions">
+        {myths.map((m, index) => (
+          <div key={m.id} className="myth-edition">
+            <span className="label-mono text-coral">
+              {String(index + 1).padStart(2, "0")} / AFIRMAÇÃO
+            </span>
+            <MythCard item={m} />
+          </div>
         ))}
       </div>
     </Section>

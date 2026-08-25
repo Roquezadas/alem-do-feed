@@ -12,7 +12,8 @@ export function EvidenceTeaser() {
           Várias conexões.
         </h3>
         <p className="mt-5 max-w-xl text-muted-foreground">
-          Conecte uma dúvida a uma lei, um caso e um episódio — e descubra o que existe além da publicação.
+          Conecte uma dúvida a uma lei, um caso e um episódio — e descubra o que existe além da
+          publicação.
         </p>
         <Link
           to="/sala-de-evidencias"

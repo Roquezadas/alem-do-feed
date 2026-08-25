@@ -20,8 +20,12 @@ export function Footer() {
   if (location.pathname === "/feed-experimental") return null;
 
   return (
-    <footer className="surface-dark border-t px-4 py-14 md:px-8">
-      <div className="mx-auto max-w-6xl">
+    <footer className="site-footer surface-dark border-t px-4 py-16 md:px-8 md:py-24">
+      <div className="mx-auto max-w-7xl">
+        <div className="footer-manifesto" aria-hidden="true">
+          O FEED MOSTRA.
+          <br />A GENTE VAI <span>ALÉM.</span>
+        </div>
         <div className="flex flex-col gap-10 md:flex-row md:justify-between">
           <div className="max-w-sm">
             <div className="flex items-center gap-3">

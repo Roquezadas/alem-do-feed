@@ -25,10 +25,16 @@ export function EvidenceDetail({
       <div className="flex items-start justify-between gap-4 border-b border-dashed p-5 md:p-6">
         <div>
           <div className="flex flex-wrap items-center gap-2">
-            <Tag tone={node.type === "case" ? "cobalt" : node.type === "episode" ? "outline" : "ink"}>
+            <Tag
+              tone={node.type === "case" ? "cobalt" : node.type === "episode" ? "outline" : "ink"}
+            >
               {evidenceTypeLabel[node.type]}
             </Tag>
-            {relationship ? <Tag tone="outline">{evidenceRelationshipLabel[relationship as keyof typeof evidenceRelationshipLabel]}</Tag> : null}
+            {relationship ? (
+              <Tag tone="outline">
+                {evidenceRelationshipLabel[relationship as keyof typeof evidenceRelationshipLabel]}
+              </Tag>
+            ) : null}
           </div>
           <h3 className="mt-4 text-2xl font-extrabold tracking-tight md:text-3xl">
             {node.subtitle ?? node.title}

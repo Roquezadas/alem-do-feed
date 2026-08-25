@@ -26,8 +26,6 @@ const riskTone: Record<UserDecision["risk"], "cobalt" | "default" | "coral"> = {
   high: "coral",
 };
 
-
-
 export function ExperimentalFeed() {
   const [stage, setStage] = useState<ExperienceStage>("intro");
   const [scenarioIndex, setScenarioIndex] = useState(0);
@@ -35,10 +33,12 @@ export function ExperimentalFeed() {
   const [lastAction, setLastAction] = useState<FeedAction | null>(null);
 
   const currentScenario: ExperimentalScenario =
-  experimentalScenarios[scenarioIndex] ?? experimentalScenarios[0]!;
+    experimentalScenarios[scenarioIndex] ?? experimentalScenarios[0]!;
   const total = experimentalScenarios.length;
   const progressPct =
-    stage === "intro" ? 0 : Math.round(((scenarioIndex + (stage === "feed" ? 0.5 : 1)) / total) * 100);
+    stage === "intro"
+      ? 0
+      : Math.round(((scenarioIndex + (stage === "feed" ? 0.5 : 1)) / total) * 100);
 
   useEffect(() => {
     if (stage === "feed") {
@@ -58,7 +58,12 @@ export function ExperimentalFeed() {
     if (stage !== "feed") return;
     setDecisions((current) => [
       ...current,
-      { scenarioId: currentScenario.id, action, risk: currentScenario.consequence.risk, timestamp: Date.now() },
+      {
+        scenarioId: currentScenario.id,
+        action,
+        risk: currentScenario.consequence.risk,
+        timestamp: Date.now(),
+      },
     ]);
     setLastAction(action);
     setStage("reveal");

@@ -1,5 +1,8 @@
 import { useMemo, useState } from "react";
-import type { EvidenceGraph as EvidenceGraphData, EvidenceNode as EvidenceNodeData } from "@/lib/evidenceGraph";
+import type {
+  EvidenceGraph as EvidenceGraphData,
+  EvidenceNode as EvidenceNodeData,
+} from "@/lib/evidenceGraph";
 import { EvidenceNode } from "./EvidenceNode";
 
 const positionPresets = [
@@ -50,7 +53,9 @@ export function EvidenceGraph({
         aria-hidden="true"
       >
         <defs>
-          <filter id="evidence-soft"><feGaussianBlur stdDeviation="0.55" /></filter>
+          <filter id="evidence-soft">
+            <feGaussianBlur stdDeviation="0.55" />
+          </filter>
         </defs>
 
         {graph.edges
@@ -69,7 +74,13 @@ export function EvidenceGraph({
             );
           })}
 
-        <circle cx="50" cy="52" r="9.5" className="evidence-core-glow" filter="url(#evidence-soft)" />
+        <circle
+          cx="50"
+          cy="52"
+          r="9.5"
+          className="evidence-core-glow"
+          filter="url(#evidence-soft)"
+        />
         <circle cx="50" cy="52" r="9" className="evidence-core-ring" />
       </svg>
 
@@ -98,11 +109,13 @@ export function EvidenceGraph({
             className="evidence-graph-node-wrap"
             style={{ left: `${p.x}%`, top: `${p.y}%` }}
           >
-            <div
-              onMouseEnter={() => setHoveredId(node.id)}
-              onFocus={() => setHoveredId(node.id)}
-            >
-              <EvidenceNode node={node} active={isActive} muted={isMuted} onSelect={() => onSelect(node)} />
+            <div onMouseEnter={() => setHoveredId(node.id)} onFocus={() => setHoveredId(node.id)}>
+              <EvidenceNode
+                node={node}
+                active={isActive}
+                muted={isMuted}
+                onSelect={() => onSelect(node)}
+              />
             </div>
           </div>
         );

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import heroLayers from "@/assets/hero-layers.jpg";
+import { OpenFrame } from "@/components/OpenFrame";
 
 export function HeroFrame() {
   const [beyond, setBeyond] = useState(false);
@@ -21,7 +22,7 @@ export function HeroFrame() {
   }, []);
 
   return (
-    <section className="hero-frame surface-dark relative overflow-hidden px-4 pt-14 pb-20 md:px-8 md:pt-20 md:pb-28">
+    <section className="hero-frame surface-dark relative overflow-hidden px-4 pt-16 pb-24 md:px-8 md:pt-24 md:pb-36">
       <div
         className="hero-progress"
         style={{ transform: `scaleX(${scrollProgress})` }}
@@ -32,18 +33,24 @@ export function HeroFrame() {
         aria-hidden="true"
       />
 
-      <div className="relative mx-auto grid max-w-6xl gap-12 md:grid-cols-[1.15fr_1fr] md:items-center">
+      <span className="hero-oversize" aria-hidden="true">
+        FEED
+      </span>
+      <div className="relative mx-auto grid max-w-7xl gap-12 md:grid-cols-[1.08fr_0.92fr] md:items-center">
         <div>
           <p className="label-mono text-[oklch(0.703_0.176_26)]">
             {beyond ? "O QUE EXISTE ALÉM" : "O QUE VOCÊ VÊ"}
           </p>
 
-          <h1 className="reveal-mask mt-5 max-w-xl font-display text-5xl leading-[0.86] font-extrabold tracking-tight uppercase md:text-8xl">
+          <h1 className="reveal-mask hero-title mt-5 max-w-xl font-display text-6xl leading-[0.78] font-extrabold tracking-[-0.075em] uppercase md:text-8xl lg:text-[clamp(5.5rem,10vw,10rem)]">
             Além do Feed
           </h1>
 
-          <div
-            className="mt-8 inline-block border p-6 transition-transform duration-700 md:p-10"
+          <OpenFrame
+            variant="media"
+            orientation="top-right"
+            animated
+            className="hero-episode mt-10 inline-block p-6 md:p-10"
             style={{
               transform: `translate3d(${10 + scrollProgress * 8}px,${-10 - scrollProgress * 8}px,0)`,
             }}
@@ -55,7 +62,7 @@ export function HeroFrame() {
               <br />
               autorizou?
             </h2>
-          </div>
+          </OpenFrame>
 
           <p className="mt-8 max-w-md text-lg leading-relaxed opacity-85">
             Nem tudo que aparece no feed termina no feed. Uma foto pode parecer só uma foto, até
@@ -70,21 +77,31 @@ export function HeroFrame() {
             >
               ENTRAR NO EPISÓDIO →
             </Link>
-            <Link to="/o-que-pode-fazer" className="label-mono border border-current px-6 py-4">
-              EXPLORAR O TEMA
+            <Link
+              to="/o-que-pode-fazer"
+              className="editorial-link label-mono border border-current px-6 py-4"
+            >
+              ABRIR CONTEXTO →
             </Link>
           </div>
         </div>
 
-        <div className="relative">
-          <img
-            src={heroLayers}
-            alt="Camadas de molduras sobrepostas em que uma imagem escapa do enquadramento"
-            width={1200}
-            height={1408}
-            className="hero-image w-full border object-cover"
-            style={{ transform: `scale(${1 + scrollProgress * 0.035})` }}
-          />
+        <div className="relative hero-media-wrap">
+          <OpenFrame
+            variant="media"
+            orientation="bottom-left"
+            animated
+            className="hero-media-frame"
+          >
+            <img
+              src={heroLayers}
+              alt="Camadas de molduras sobrepostas em que uma imagem escapa do enquadramento"
+              width={1200}
+              height={1408}
+              className="hero-image w-full object-cover"
+              style={{ transform: `scale(${1 + scrollProgress * 0.035})` }}
+            />
+          </OpenFrame>
           <div
             className="absolute -bottom-6 -left-2 max-w-[80%] border bg-[oklch(0.955_0.014_88)] p-4 text-[oklch(0.185_0.005_275)] transition-all duration-700 md:-left-10"
             style={{
@@ -97,6 +114,9 @@ export function HeroFrame() {
               Contexto · Lei · Jurisprudência · Risco · Consequência
             </p>
           </div>
+          <span className="hero-side-note label-mono" aria-hidden="true">
+            SUPERFÍCIE / 001
+          </span>
         </div>
       </div>
     </section>
