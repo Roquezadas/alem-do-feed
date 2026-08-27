@@ -1,5 +1,5 @@
 import { Link, useLocation } from "@tanstack/react-router";
-import { Mark } from "@/components/brand/Mark";
+import { BrandLogo } from "@/components/brand/BrandLogo";
 import { social } from "@/data/feed";
 
 const links = [
@@ -28,12 +28,7 @@ export function Footer() {
         </div>
         <div className="flex flex-col gap-10 md:flex-row md:justify-between">
           <div className="max-w-sm">
-            <div className="flex items-center gap-3">
-              <Mark className="h-8 w-8" />
-              <span className="font-display text-xl font-extrabold tracking-tight uppercase">
-                Além do Feed
-              </span>
-            </div>
+            <BrandLogo className="brand-logo-footer" />
             <p className="mt-4 text-sm opacity-75">Nem tudo que aparece no feed termina no feed.</p>
           </div>
 

@@ -3,7 +3,7 @@ import { ExperimentalFeed } from "@/components/ExperimentalFeed";
 
 const title = "Feed Experimental | Além do Feed";
 const description =
-  "Tome decisões, veja como uma publicação pode se espalhar e descubra o que existe além do feed.";
+  "Tome uma decisão, acompanhe como um conteúdo se espalha e descubra o que existe além do seu clique.";
 
 export const Route = createFileRoute("/feed-experimental")({
   head: () => ({

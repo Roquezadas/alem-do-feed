@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "@tanstack/react-router";
-import { Mark } from "@/components/brand/Mark";
+import { BrandLogo } from "@/components/brand/BrandLogo";
 import { SearchDialog } from "@/components/SearchDialog";
 
 export const navItems = [
@@ -23,13 +23,8 @@ export function Header() {
   return (
     <header className="site-header sticky top-0 z-50 border-b bg-background/95 backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center gap-4 px-4 py-3 md:px-8">
-        <Link to="/" className="flex items-center gap-2" aria-label="Além do Feed — página inicial">
-          <Mark className="h-7 w-7" />
-          <span className="font-display text-sm leading-none font-extrabold tracking-tight uppercase">
-            Além
-            <br />
-            do Feed
-          </span>
+        <Link to="/" className="brand-home-link" aria-label="Além do Feed — página inicial">
+          <BrandLogo compact />
         </Link>
 
         <nav aria-label="Principal" className="ml-auto hidden items-center gap-5 lg:flex">

@@ -119,6 +119,20 @@ export interface SocialPost {
 export type FeedAction =
   "share" | "repost" | "report" | "ignore" | "ask" | "publish" | "edit" | "verify" | "authority";
 
+export type ExperimentalPropagationKind =
+  "repost" | "screenshot" | "meme" | "commentary" | "news" | "cross-platform";
+
+export type ExperimentalPropagationItem = {
+  id: string;
+  kind: ExperimentalPropagationKind;
+  profile: string;
+  timestamp: string;
+  label: string;
+  caption: string;
+  metrics: { likes: number; comments: number; shares: number };
+  crop: "wide" | "close" | "offset" | "compressed";
+};
+
 export type ExperimentalScenario = {
   id: string;
   type: "photo" | "video" | "screenshot" | "meme" | "minor" | "deepfake";
@@ -127,6 +141,9 @@ export type ExperimentalScenario = {
   title: string;
   description: string;
   contentLabel: string;
+  caption: string;
+  mediaAlt: string;
+  topicSlug: string;
   metrics: { likes: number; comments: number; shares: number };
   actions: { id: FeedAction; label: string; shortLabel?: string }[];
   consequence: {
@@ -137,5 +154,8 @@ export type ExperimentalScenario = {
     risk: "low" | "attention" | "high";
   };
   layers: { label: string; title: string; body: string }[];
+  xray: { label: string; value: string; alert?: boolean }[];
+  propagation: ExperimentalPropagationItem[];
+  contextResult: { label: string; title: string; body: string };
   sources?: { label: string; url: string }[];
 };

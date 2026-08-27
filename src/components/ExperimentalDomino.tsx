@@ -2,9 +2,7 @@ import { useEffect, useState } from "react";
 import { ArrowDown, ShieldCheck } from "lucide-react";
 import type { FeedAction } from "@/data/types";
 
-// Ações que alimentam a propagação do conteúdo — a cadeia viral acontece.
 const PROPAGATING_ACTIONS: FeedAction[] = ["share", "repost", "publish"];
-
 const propagateStages = [
   "VOCÊ",
   "1 PESSOA",
@@ -17,8 +15,6 @@ const propagateStages = [
   "OUTRO PERFIL",
   "FORA DO CONTEXTO",
 ];
-
-// Ações que interrompem ou contêm a circulação — cadeia curta e específica por ação.
 const containStagesByAction: Partial<Record<FeedAction, string[]>> = {
   ignore: ["VOCÊ", "DECISÃO TOMADA", "NADA SAIU DAQUI", "CADEIA NÃO INICIADA"],
   report: ["VOCÊ", "DENÚNCIA ENVIADA", "ANÁLISE DA PLATAFORMA", "CIRCULAÇÃO CONTIDA"],
@@ -45,10 +41,8 @@ export function ExperimentalDomino({ action }: { action: FeedAction }) {
   const stages = propagates
     ? propagateStages
     : (containStagesByAction[action] ?? ["VOCÊ", "DECISÃO TOMADA", "CADEIA INTERROMPIDA"]);
-
   const reducedMotion = usePrefersReducedMotion();
   const [visible, setVisible] = useState(0);
-
   useEffect(() => {
     if (reducedMotion) {
       setVisible(stages.length);
@@ -61,7 +55,6 @@ export function ExperimentalDomino({ action }: { action: FeedAction }) {
     return () => timers.forEach(window.clearTimeout);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [action, reducedMotion]);
-
   return (
     <div
       className={`experimental-domino ${propagates ? "is-propagating" : "is-contained"}`}
@@ -70,9 +63,9 @@ export function ExperimentalDomino({ action }: { action: FeedAction }) {
       <span className="label-mono experimental-domino-label">
         {propagates ? "COMO O CONTEÚDO SE ESPALHOU" : "O QUE ACONTECEU COM A CADEIA"}
       </span>
-      {stages.map((stage, index) => (
+      {stages.map((item, index) => (
         <div
-          key={stage}
+          key={item}
           className={`experimental-domino-step ${visible > index ? "is-visible" : ""}`}
         >
           <span className="experimental-domino-node">
@@ -84,7 +77,7 @@ export function ExperimentalDomino({ action }: { action: FeedAction }) {
               String(index + 1).padStart(2, "0")
             )}
           </span>
-          <span className="label-mono">{stage}</span>
+          <span className="label-mono">{item}</span>
           {index < stages.length - 1 ? <ArrowDown size={16} aria-hidden="true" /> : null}
         </div>
       ))}

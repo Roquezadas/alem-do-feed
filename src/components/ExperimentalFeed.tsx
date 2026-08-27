@@ -6,6 +6,8 @@ import { ExperimentalPost } from "@/components/ExperimentalPost";
 import { Tag } from "@/components/Tag";
 import { actionLabels, experimentalScenarios } from "@/data/experimentalFeed";
 import type { ExperimentalScenario, FeedAction } from "@/data/types";
+import feedRuptureClimax from "@/assets/feed-rupture-climax.jpg";
+import { Mark } from "@/components/brand/Mark";
 
 type ExperienceStage = "intro" | "feed" | "reveal" | "reflection";
 type UserDecision = {
@@ -31,7 +33,6 @@ export function ExperimentalFeed() {
   const [scenarioIndex, setScenarioIndex] = useState(0);
   const [decisions, setDecisions] = useState<UserDecision[]>([]);
   const [lastAction, setLastAction] = useState<FeedAction | null>(null);
-
   const currentScenario: ExperimentalScenario =
     experimentalScenarios[scenarioIndex] ?? experimentalScenarios[0]!;
   const total = experimentalScenarios.length;
@@ -41,11 +42,10 @@ export function ExperimentalFeed() {
       : Math.round(((scenarioIndex + (stage === "feed" ? 0.5 : 1)) / total) * 100);
 
   useEffect(() => {
-    if (stage === "feed") {
+    if (stage === "feed")
       window.dispatchEvent(
         new CustomEvent("adf:scenario_viewed", { detail: { scenarioId: currentScenario.id } }),
       );
-    }
     if (stage === "reveal") window.dispatchEvent(new CustomEvent("adf:chain_viewed"));
   }, [currentScenario.id, stage]);
 
@@ -99,6 +99,7 @@ export function ExperimentalFeed() {
       <div className="experimental-shell experimental-intro">
         <div className="experimental-intro-grid" aria-hidden="true" />
         <div className="experimental-intro-frame">
+          <Mark className="experimental-brand-mark" />
           <span className="label-mono text-primary">ALÉM DO FEED · ADF / 001</span>
           <h1>
             Feed
@@ -132,7 +133,6 @@ export function ExperimentalFeed() {
     const highRiskChoices = decisions.filter(
       ({ risk, action }) => risk === "high" && ["share", "repost", "publish"].includes(action),
     ).length;
-
     return (
       <div className="experimental-shell experimental-reflection">
         <div className="experimental-reflection-inner">
@@ -217,6 +217,16 @@ export function ExperimentalFeed() {
               alguém que aparece na publicação.
             </p>
           </div>
+          <figure className="experimental-climax-art">
+            <img
+              src={feedRuptureClimax}
+              alt="Uma moldura aberta se rompe em ondas, fragmentos e conexões, representando a circulação de uma publicação para além do feed."
+              width={1536}
+              height={1024}
+              loading="lazy"
+            />
+            <figcaption className="label-mono">CAMADA 02 · O CONTEÚDO SAIU DO FRAME</figcaption>
+          </figure>
           <div className="experimental-consequence">
             <div className="experimental-consequence-head">
               <span className="label-mono text-coral">O QUE ACONTECEU?</span>
@@ -250,17 +260,7 @@ export function ExperimentalFeed() {
             <div className="experimental-sources">
               <span className="label-mono">FUNDAMENTO · FONTES OFICIAIS</span>
               {currentScenario.sources.map((source) => (
-                <a
-                  key={source.url}
-                  href={source.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() =>
-                    window.dispatchEvent(
-                      new CustomEvent("adf:legal_source_opened", { detail: { url: source.url } }),
-                    )
-                  }
-                >
+                <a key={source.url} href={source.url} target="_blank" rel="noopener noreferrer">
                   {source.label} ↗
                 </a>
               ))}

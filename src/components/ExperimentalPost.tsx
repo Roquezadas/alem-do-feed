@@ -3,7 +3,6 @@ import type { ExperimentalScenario, FeedAction } from "@/data/types";
 import { ExperimentalActionChoice } from "@/components/ExperimentalActionChoice";
 
 const formatMetric = (value: number) => value.toLocaleString("pt-BR");
-
 const contentNotes: Record<ExperimentalScenario["type"], string> = {
   video: "reprodução interrompida · conteúdo sensível",
   photo: "registro de evento · pessoa identificável",
@@ -34,13 +33,11 @@ export function ExperimentalPost({
         </div>
         <MoreHorizontal aria-hidden="true" size={20} />
       </header>
-
       <div className="experimental-post-context">
         <span className="label-mono">{scenario.contentLabel}</span>
         <p>{scenario.title}</p>
         <p className="text-muted-foreground">{scenario.description}</p>
       </div>
-
       <div className="experimental-content-frame">
         <div className="experimental-content-back" aria-hidden="true" />
         <span className="label-mono">
@@ -55,7 +52,6 @@ export function ExperimentalPost({
         </strong>
         <small>{contentNotes[scenario.type]}</small>
       </div>
-
       <div className="experimental-metrics" aria-label="Métricas fictícias da publicação">
         <span>
           <Heart size={16} aria-hidden="true" /> {formatMetric(scenario.metrics.likes)}
@@ -68,14 +64,12 @@ export function ExperimentalPost({
         </span>
         <span className="label-mono">métricas narrativas</span>
       </div>
-
       <p className="experimental-caption">“{scenario.description}”</p>
       <div className="experimental-post-tools" aria-hidden="true">
         <Heart size={18} />
         <MessageCircle size={18} />
         <Send size={18} />
       </div>
-
       <div className="experimental-choice-block">
         <span className="label-mono text-primary">VOCÊ FAZ A ESCOLHA</span>
         <h2>O que você faz?</h2>
