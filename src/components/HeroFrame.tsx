@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import heroLayers from "@/assets/hero-layers.jpg";
 import { OpenFrame } from "@/components/OpenFrame";
+import { social } from "@/data/social";
 
 export function HeroFrame() {
   const [beyond, setBeyond] = useState(false);
@@ -39,7 +40,7 @@ export function HeroFrame() {
       <div className="relative mx-auto grid max-w-7xl gap-12 md:grid-cols-[1.08fr_0.92fr] md:items-center">
         <div>
           <p className="label-mono text-[oklch(0.703_0.176_26)]">
-            {beyond ? "O QUE EXISTE ALÉM" : "O QUE VOCÊ VÊ"}
+            JÁ ESTAMOS NO AR / EP. 01 NO SPOTIFY
           </p>
 
           <h1 className="reveal-mask hero-title mt-5 max-w-xl font-display text-6xl leading-[0.78] font-extrabold tracking-[-0.075em] uppercase md:text-8xl lg:text-[clamp(5.5rem,10vw,10rem)]">
@@ -57,7 +58,7 @@ export function HeroFrame() {
             onMouseEnter={() => setBeyond(true)}
           >
             <span className="label-mono opacity-60">EP. 01 · DIREITO À IMAGEM</span>
-            <h2 className="mt-4 text-5xl leading-[0.85] font-extrabold tracking-tighter uppercase md:text-8xl">
+            <h2 className="mt-4 text-4xl leading-[0.85] font-extrabold tracking-tighter uppercase sm:text-5xl md:text-[clamp(2.5rem,5.5vw,5rem)]">
               Quem
               <br />
               autorizou?
@@ -65,25 +66,35 @@ export function HeroFrame() {
           </OpenFrame>
 
           <p className="mt-8 max-w-md text-lg leading-relaxed opacity-85">
-            Nem tudo que aparece no feed termina no feed. Uma foto pode parecer só uma foto, até
-            você descobrir o que existe por trás dela.
+            O primeiro episódio já está disponível. Ouça “Quem autorizou?” e descubra o que existe
+            além de uma publicação. Nem tudo que aparece no feed termina no feed.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">
+            <a
+              href={social.spotify}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="label-mono bg-primary px-6 py-4 text-primary-foreground transition-transform hover:-translate-y-0.5"
+            >
+              OUVIR NO SPOTIFY ↗
+            </a>
             <Link
               to="/episodios/$slug"
               params={{ slug: "quem-autorizou" }}
-              className="label-mono bg-primary px-6 py-4 text-primary-foreground transition-transform hover:-translate-y-0.5"
-            >
-              ENTRAR NO EPISÓDIO →
-            </Link>
-            <Link
-              to="/o-que-pode-fazer"
               className="editorial-link label-mono border border-current px-6 py-4"
             >
-              ABRIR CONTEXTO →
+              EXPLORAR O EPISÓDIO →
             </Link>
           </div>
+          <a
+            href={social.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="label-mono mt-6 inline-block border-b border-white/50 py-2 text-white"
+          >
+            ACOMPANHE NO INSTAGRAM ↗
+          </a>
         </div>
 
         <div className="relative hero-media-wrap">

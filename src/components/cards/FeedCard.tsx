@@ -15,10 +15,10 @@ export function FeedCard({ item }: { item: FeedItem }) {
 
   return (
     <article className="frame-open group relative flex flex-col overflow-hidden">
-      <div className="flex items-center justify-between border-b border-dashed px-4 py-3">
+      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-dashed px-4 py-3">
         <Tag tone={beyond ? "cobalt" : "ink"}>{item.label}</Tag>
         <time className="label-mono text-muted-foreground" dateTime={item.date}>
-          {new Date(item.date).toLocaleDateString("pt-BR")}
+          {new Date(item.date).toLocaleDateString("pt-BR", { timeZone: "UTC" })}
         </time>
       </div>
 

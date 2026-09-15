@@ -1,6 +1,6 @@
 import { Link, useLocation } from "@tanstack/react-router";
 import { BrandLogo } from "@/components/brand/BrandLogo";
-import { social } from "@/data/feed";
+import { social } from "@/data/social";
 
 const links = [
   { to: "/feed-experimental", label: "EXPERIÊNCIA" },
@@ -9,6 +9,7 @@ const links = [
   { to: "/leis", label: "LEIS" },
   { to: "/jurisprudencia", label: "STF / STJ" },
   { to: "/episodios", label: "EPISÓDIOS" },
+  { to: "/sala-de-evidencias", label: "SALA DE EVIDÊNCIAS" },
   { to: "/mitos", label: "MITOS DO FEED" },
   { to: "/conteudos", label: "FEED" },
   { to: "/sobre", label: "SOBRE" },
@@ -26,7 +27,7 @@ export function Footer() {
           O FEED MOSTRA.
           <br />A GENTE VAI <span>ALÉM.</span>
         </div>
-        <div className="flex flex-col gap-10 md:flex-row md:justify-between">
+        <div className="flex flex-col gap-10 lg:flex-row lg:justify-between">
           <div className="max-w-sm">
             <BrandLogo className="brand-logo-footer" />
             <p className="mt-4 text-sm opacity-75">Nem tudo que aparece no feed termina no feed.</p>
@@ -41,7 +42,7 @@ export function Footer() {
           </nav>
 
           <div>
-            <span className="label-mono opacity-60">REDES</span>
+            <span className="label-mono opacity-75">O PROJETO ESTÁ NO AR</span>
             <ul className="mt-3 space-y-2">
               <li>
                 <a
@@ -55,22 +56,12 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href={social.youtube}
+                  href={social.spotify}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="label-mono"
                 >
-                  YOUTUBE ↗
-                </a>
-              </li>
-              <li>
-                <a
-                  href={social.tiktok}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="label-mono"
-                >
-                  TIKTOK ↗
+                  OUVIR NO SPOTIFY ↗
                 </a>
               </li>
             </ul>

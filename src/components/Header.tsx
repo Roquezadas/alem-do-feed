@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "@tanstack/react-router";
 import { BrandLogo } from "@/components/brand/BrandLogo";
 import { SearchDialog } from "@/components/SearchDialog";
+import { social } from "@/data/social";
 
 export const navItems = [
   { to: "/feed-experimental", label: "EXPERIÊNCIA" },
@@ -27,7 +28,7 @@ export function Header() {
           <BrandLogo compact />
         </Link>
 
-        <nav aria-label="Principal" className="ml-auto hidden items-center gap-5 lg:flex">
+        <nav aria-label="Principal" className="ml-auto hidden items-center gap-5 xl:flex">
           {navItems.map((item) => (
             <Link
               key={item.to}
@@ -40,7 +41,7 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="ml-auto flex items-center gap-2 lg:ml-0">
+        <div className="ml-auto flex items-center gap-2 xl:ml-0">
           <SearchDialog />
           <Link
             to="/feed-experimental"
@@ -54,7 +55,7 @@ export function Header() {
             aria-expanded={open}
             aria-controls="menu-mobile"
             aria-label={open ? "Fechar menu" : "Abrir menu"}
-            className="label-mono border border-foreground px-3 py-3 lg:hidden"
+            className="label-mono border border-foreground px-3 py-3 xl:hidden"
           >
             {open ? "FECHAR" : "MENU"}
           </button>
@@ -65,7 +66,7 @@ export function Header() {
         <nav
           id="menu-mobile"
           aria-label="Principal (mobile)"
-          className="animate-rise border-t bg-background px-4 py-4 lg:hidden"
+          className="animate-rise border-t bg-background px-4 py-4 xl:hidden"
         >
           <ul className="grid gap-1">
             {navItems.map((item) => (
@@ -80,6 +81,24 @@ export function Header() {
               </li>
             ))}
           </ul>
+          <div className="mt-4 flex flex-wrap gap-4 border-t pt-4">
+            <a
+              href={social.spotify}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="label-mono py-3 text-primary"
+            >
+              OUVIR NO SPOTIFY ↗
+            </a>
+            <a
+              href={social.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="label-mono py-3 text-primary"
+            >
+              INSTAGRAM ↗
+            </a>
+          </div>
         </nav>
       ) : null}
     </header>

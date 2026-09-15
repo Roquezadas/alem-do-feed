@@ -1,14 +1,15 @@
-import type { FeedItem, SocialPost } from "./types";
+import type { FeedItem } from "./types";
+import { episodes } from "./episodes";
 
 export const feedItems: FeedItem[] = [
   {
     id: "f-01",
     type: "episodio",
-    date: "2026-08-18",
-    label: "EPISÓDIO",
+    date: episodes[0].date,
+    label: "EPISÓDIO DISPONÍVEL",
     title: "EP. 01 — Quem autorizou?",
     summary:
-      "Direito à imagem nas redes sociais: o que muda quando outra pessoa aparece na sua publicação.",
+      "Já no Spotify: direito à imagem nas redes sociais e o que muda quando outra pessoa aparece na sua publicação.",
     layerContext:
       "Uma foto de grupo é publicada. Uma das pessoas não queria aparecer e pede a remoção.",
     layerLaw:
@@ -24,7 +25,7 @@ export const feedItems: FeedItem[] = [
     date: "2026-08-16",
     label: "PERGUNTA",
     title: "Posso publicar um print de uma conversa?",
-    summary: "A pergunta mais repetida da caixinha — e a de maior risco jurídico.",
+    summary: "Uma conversa privada pode ganhar um público que nunca deveria ter tido.",
     layerContext:
       "Print de conversa privada exposto em uma publicação aberta, com nome e foto do outro participante.",
     layerLaw:
@@ -95,8 +96,8 @@ export const feedItems: FeedItem[] = [
     date: "2026-08-06",
     label: "BASTIDOR",
     title: "Como escolhemos as perguntas do episódio",
-    summary: "Recebemos dúvidas reais e transformamos em roteiro jurídico acessível.",
-    layerContext: "Caixinha de perguntas aberta por uma semana no perfil do projeto.",
+    summary: "Das situações de rede social às perguntas que orientam a conversa.",
+    layerContext: "Publicar, compartilhar e pedir remoção são pontos de partida para a discussão.",
     layerLaw: "Cada dúvida é mapeada para um fundamento legal antes de virar pauta.",
     layerConsequence:
       "O episódio nasce de situações concretas, não de hipóteses abstratas de manual.",
@@ -131,54 +132,3 @@ export const feedFilters = [
   "REDES SOCIAIS",
   "IA",
 ] as const;
-
-/**
- * Conteúdo social: arquitetura em três opções.
- * A) embed oficial (embeddable + videoId/url)
- * B) card com thumbnail + link (padrão atual)
- * C) cadastro manual futuro em banco de dados
- */
-export const socialPosts: SocialPost[] = [
-  {
-    id: "s-01",
-    platform: "instagram",
-    kind: "reel",
-    caption: "Três coisas que a gente confunde sobre postar foto dos outros.",
-    date: "2026-08-17",
-    url: "https://instagram.com/alemdofeed",
-    embeddable: false,
-  },
-  {
-    id: "s-02",
-    platform: "instagram",
-    kind: "carrossel",
-    caption: "Autorização não é genérica, não é eterna e pode ser revogada.",
-    date: "2026-08-15",
-    url: "https://instagram.com/alemdofeed",
-    embeddable: false,
-  },
-  {
-    id: "s-03",
-    platform: "instagram",
-    kind: "post",
-    caption: "“Apaguei, então acabou.” Spoiler: não acabou.",
-    date: "2026-08-11",
-    url: "https://instagram.com/alemdofeed",
-    embeddable: false,
-  },
-  {
-    id: "s-04",
-    platform: "youtube",
-    kind: "short",
-    caption: "Local público não é sinônimo de publicação livre.",
-    date: "2026-08-09",
-    url: "https://youtube.com/@alemdofeed",
-    embeddable: false,
-  },
-];
-
-export const social = {
-  instagram: "https://instagram.com/alemdofeed",
-  youtube: "https://youtube.com/@alemdofeed",
-  tiktok: "https://tiktok.com/@alemdofeed",
-};

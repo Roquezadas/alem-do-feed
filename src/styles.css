@@ -3945,37 +3945,93 @@ body {
   border: 0;
 }
 
-.experimental-climax-art {
-  position: relative;
-  margin-top: 3rem;
-  border: 1px solid #111214;
-  background: #111214;
+/* Publicação do podcast: mídia local e links leves, sem widgets na Home. */
+.episode-card-featured {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
 }
 
-.experimental-climax-art::before {
-  position: absolute;
-  inset: 0.8rem -0.8rem -0.8rem 0.8rem;
-  z-index: -1;
-  border-right: 1px solid #2037ff;
-  border-bottom: 1px solid #2037ff;
-  content: "";
+.episode-cover {
+  align-self: center;
 }
 
-.experimental-climax-art img {
-  display: block;
+.social-publication {
+  border-top: 3px solid var(--cobalt);
+}
+
+.social-publication:nth-child(even) {
+  border-top-color: var(--coral);
+}
+
+.instagram-embed-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start;
+  gap: 2rem;
+}
+
+.instagram-embed-card {
+  min-width: 0;
   width: 100%;
-  aspect-ratio: 3 / 2;
-  object-fit: cover;
-  object-position: center;
+  max-width: 542px;
+  justify-self: center;
+  overflow: hidden;
 }
 
-.experimental-climax-art figcaption {
-  position: absolute;
-  right: 1rem;
-  bottom: 1rem;
-  padding: 0.65rem 0.8rem;
-  background: #f4f0e7;
-  color: #111214;
+.instagram-embed-copy {
+  padding: 1.25rem;
+  overflow-wrap: anywhere;
+}
+
+.instagram-embed-slot {
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+}
+
+.instagram-embed-slot[data-ready="true"] {
+  height: auto;
+  min-height: 200px;
+  visibility: visible;
+}
+
+.instagram-embed-mount {
+  width: 100%;
+  min-width: 0;
+}
+
+/* O SDK é dono do iframe. Estas regras só limitam sua caixa, não imitam sua interface. */
+.instagram-embed-mount iframe.instagram-media {
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+  .instagram-embed-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.spotify-player {
+  height: 152px;
+  overflow: hidden;
+  border: 1px solid #69696e;
+  border-radius: 12px;
+  background: #242428;
+  color: #fff;
+}
+
+.spotify-player button:hover {
+  background: #303036;
+}
+
+@media (min-width: 1024px) {
+  .episode-card-featured {
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  }
 }
 
 @media (max-width: 639px) {
@@ -3986,15 +4042,5 @@ body {
 
   .brand-logo-compact .brand-logo-type small {
     display: none;
-  }
-
-  .experimental-climax-art img {
-    aspect-ratio: 4 / 3;
-    object-position: 63% center;
-  }
-
-  .experimental-climax-art figcaption {
-    position: static;
-    display: block;
   }
 }

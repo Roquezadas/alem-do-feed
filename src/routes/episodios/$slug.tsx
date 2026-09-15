@@ -1,14 +1,18 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { Section } from "@/components/Section";
 import { CaseCard } from "@/components/cards/CaseCard";
 import { LawCard } from "@/components/cards/LawCard";
-import { YouTubeEmbed } from "@/components/YouTubeEmbed";
+import { SpotifyEmbed } from "@/components/SpotifyEmbed";
 import { episodes, getEpisode } from "@/data/episodes";
 import { getLaw } from "@/data/laws";
 import { cases } from "@/data/cases";
 
 export const Route = createFileRoute("/episodios/$slug")({
-  loader: ({ params }) => getEpisode(params.slug),
+  loader: ({ params }) => {
+    const episode = getEpisode(params.slug);
+    if (!episode) throw notFound();
+    return episode;
+  },
   head: ({ loaderData }) => ({
     meta: [
       {
@@ -16,8 +20,28 @@ export const Route = createFileRoute("/episodios/$slug")({
           ? `${loaderData.number} ${loaderData.title} — Além do Feed`
           : "Episódio — Além do Feed",
       },
-      { name: "description", content: loaderData?.description ?? "Episódio do Além do Feed." },
+      {
+        name: "description",
+        content: loaderData
+          ? `Já disponível no Spotify. ${loaderData.description}`
+          : "Episódio do Além do Feed.",
+      },
+      {
+        property: "og:title",
+        content: loaderData ? `${loaderData.number} — ${loaderData.title}` : "Além do Feed",
+      },
+      {
+        property: "og:description",
+        content: loaderData ? `Ouça no Spotify. ${loaderData.subtitle}.` : "Podcast Além do Feed.",
+      },
+      ...(loaderData?.coverSourceUrl
+        ? [
+            { property: "og:image", content: loaderData.coverSourceUrl },
+            { property: "og:image:alt", content: `Capa oficial de ${loaderData.title}` },
+          ]
+        : []),
     ],
+    links: loaderData ? [{ rel: "canonical", href: `/episodios/${loaderData.slug}` }] : [],
   }),
   notFoundComponent: () => <p className="p-8">Episódio não encontrado.</p>,
   component: Page,
@@ -31,24 +55,45 @@ function Page() {
 
   return (
     <>
-      <Section dark label={episode.number} title={episode.title} intro={episode.subtitle}>
+      <Section
+        dark
+        headingAs="h1"
+        label={`${episode.number} / JÁ NO SPOTIFY`}
+        title={episode.title}
+        intro={episode.subtitle}
+      >
         <div className="grid gap-8 md:grid-cols-[0.8fr_1.2fr] md:items-start">
           {episode.coverImage ? (
             <img
               src={episode.coverImage}
               alt={`Capa de ${episode.title}`}
-              className="w-full border"
+              width={640}
+              height={640}
+              className="aspect-square w-full border bg-white object-contain"
             />
           ) : null}
           <div>
+            <p className="label-mono mb-5 text-coral">EPISÓDIO PUBLICADO · {episode.duration}</p>
             <p className="max-w-xl text-lg leading-relaxed opacity-85">{episode.description}</p>
-            <div id="player" className="mt-8">
-              <YouTubeEmbed
-                videoId={episode.youtubeId}
-                title={episode.title}
-                fallbackUrl={episode.instagramUrl}
-              />
-            </div>
+            {episode.spotifyUrl ? (
+              <a
+                href={episode.spotifyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="label-mono mt-6 inline-block bg-primary px-6 py-4 text-primary-foreground"
+              >
+                OUVIR NO SPOTIFY ↗
+              </a>
+            ) : null}
+            {episode.spotifyId && episode.spotifyUrl ? (
+              <div id="player" className="mt-8 scroll-mt-28">
+                <SpotifyEmbed
+                  episodeId={episode.spotifyId}
+                  title={episode.title}
+                  url={episode.spotifyUrl}
+                />
+              </div>
+            ) : null}
           </div>
         </div>
       </Section>
@@ -63,6 +108,18 @@ function Page() {
         </ol>
       </Section>
       <Section label="CAMADAS RELACIONADAS" title="A lei e os tribunais">
+        <div className="mb-10 flex flex-wrap gap-4">
+          <Link
+            to="/sala-de-evidencias"
+            search={{ topic: "direito-a-imagem" }}
+            className="label-mono bg-primary px-5 py-4 text-primary-foreground"
+          >
+            EXPLORAR AS EVIDÊNCIAS DO EPISÓDIO →
+          </Link>
+          <Link to="/feed-experimental" className="label-mono border border-foreground px-5 py-4">
+            VER COMO ISSO APARECE NA PRÁTICA →
+          </Link>
+        </div>
         <div className="grid gap-6 lg:grid-cols-2">
           <div className="space-y-4">
             {relatedLaws

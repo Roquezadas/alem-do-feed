@@ -1,56 +1,29 @@
-import { Tag } from "@/components/Tag";
+import { Instagram } from "lucide-react";
+import { InstagramPreview } from "@/components/InstagramPreview";
 import type { SocialPost } from "@/data/types";
 
-/**
- * Opção A: se `embeddable` e houver videoId, usa embed oficial.
- * Opção B (padrão): card editorial com link para a plataforma.
- * Opção C: os itens vêm de `src/data/feed.ts` e podem migrar para um banco.
- */
+/** Card editorial de acesso à publicação, não uma reprodução do post. */
 export function SocialCard({ post }: { post: SocialPost }) {
-  const platformLabel = post.platform === "instagram" ? "INSTAGRAM" : post.platform.toUpperCase();
-
-  if (post.embeddable && post.platform === "youtube" && post.videoId) {
-    return (
-      <div className="frame-open overflow-hidden">
-        <iframe
-          src={`https://www.youtube-nocookie.com/embed/${post.videoId}?rel=0`}
-          title={post.caption}
-          loading="lazy"
-          allowFullScreen
-          className="w-full"
-          style={{ aspectRatio: "9 / 16" }}
-        />
-      </div>
-    );
-  }
-
   return (
-    <article className="frame-open flex flex-col p-5">
-      <div className="flex items-center justify-between">
-        <Tag tone="ink">{platformLabel}</Tag>
-        <span className="label-mono text-muted-foreground">{post.kind.toUpperCase()}</span>
+    <article className="social-publication frame-open flex flex-col p-6 md:p-8">
+      <div className="flex items-center justify-between gap-4">
+        <span className="label-mono text-muted-foreground">{post.label} / INSTAGRAM</span>
+        <Instagram size={22} aria-hidden="true" />
       </div>
-
-      <div
-        className="grid-paper mt-4 flex items-end p-4 text-muted-foreground"
-        style={{ aspectRatio: "4 / 5" }}
-        aria-hidden="true"
-      >
-        <span className="label-mono">O FEED MOSTRA.</span>
-      </div>
-
-      <p className="mt-4 text-sm leading-relaxed">{post.caption}</p>
-      <time className="label-mono mt-3 text-muted-foreground" dateTime={post.date}>
-        {new Date(post.date).toLocaleDateString("pt-BR")}
-      </time>
-
+      {post.preview ? <InstagramPreview preview={post.preview} /> : null}
+      <h3 className="mt-10 text-3xl font-extrabold tracking-tight uppercase">{post.title}</h3>
+      <p className="mt-3 text-sm text-muted-foreground">
+        {post.context ??
+          "Do perfil oficial @alemdofeed.podcast. Abra a publicação para ver o conteúdo completo."}
+      </p>
       <a
         href={post.url}
         target="_blank"
         rel="noopener noreferrer"
-        className="label-mono mt-4 self-start border-b border-primary pb-1 text-primary"
+        aria-label={`Ver ${post.title.toLowerCase()} no Instagram (nova aba)`}
+        className="label-mono mt-8 inline-flex items-center gap-2 self-start border-b border-primary py-3 text-primary"
       >
-        {post.platform === "instagram" ? "VER NO INSTAGRAM →" : "VER NO YOUTUBE →"}
+        VER NO INSTAGRAM →
       </a>
     </article>
   );

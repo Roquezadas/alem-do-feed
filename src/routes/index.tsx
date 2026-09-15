@@ -9,13 +9,14 @@ import { CaseCard } from "@/components/cards/CaseCard";
 import { MythCard } from "@/components/cards/MythCard";
 import { EpisodeCard } from "@/components/cards/EpisodeCard";
 import { FeedCard } from "@/components/cards/FeedCard";
-import { SocialCard } from "@/components/cards/SocialCard";
+import { InstagramSection } from "@/components/InstagramSection";
 import { questions } from "@/data/questions";
 import { laws } from "@/data/laws";
 import { cases } from "@/data/cases";
 import { myths } from "@/data/myths";
 import { episodes } from "@/data/episodes";
-import { feedItems, socialPosts } from "@/data/feed";
+import { feedItems } from "@/data/feed";
+import { social } from "@/data/social";
 import { ConsequenceTimeline } from "@/components/ConsequenceTimeline";
 import { EditorialReveal } from "@/components/EditorialReveal";
 import { QuestionStory } from "@/components/QuestionStory";
@@ -24,7 +25,7 @@ import { OpenFrame } from "@/components/OpenFrame";
 
 const title = "Além do Feed — Direito Digital, redes sociais e proteção da imagem";
 const description =
-  "Podcast sobre Direito Digital, redes sociais, proteção da imagem, privacidade, liberdade de expressão e responsabilidade na internet.";
+  "O Além do Feed já está no ar. Ouça o EP. 01 — Quem autorizou? no Spotify, acompanhe o Instagram oficial e explore direito à imagem e redes sociais.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -48,6 +49,7 @@ export const Route = createFileRoute("/")({
           description,
           inLanguage: "pt-BR",
           about: "Direito Digital, proteção da imagem e redes sociais",
+          sameAs: [social.instagram],
         }),
       },
     ],
@@ -59,6 +61,15 @@ function Home() {
   return (
     <>
       <HeroFrame />
+
+      <Section
+        id="episodio-disponivel"
+        label="PODCAST / PRIMEIRA EDIÇÃO"
+        title="O primeiro episódio está no ar."
+        intro="Quem aparece na sua publicação? A conversa começa no Spotify e continua nas camadas do site."
+      >
+        <EpisodeCard episode={episodes[0]} featured />
+      </Section>
 
       <section className="editorial-quiet px-4 py-28 md:px-8 md:py-44">
         <div className="mx-auto max-w-7xl">
@@ -226,28 +237,8 @@ function Home() {
       </Section>
 
       <Section
-        label="PODCAST"
-        index="10"
-        title="Episódios"
-        intro="Cada episódio começa em uma publicação qualquer e termina em uma consequência jurídica concreta."
-      >
-        <div className="grid gap-8 md:grid-cols-2">
-          {episodes.map((e) => (
-            <EpisodeCard key={e.id} episode={e} />
-          ))}
-          <div className="frame-open flex flex-col justify-center gap-3 border-dashed p-8">
-            <span className="label-mono text-muted-foreground">EM PRODUÇÃO</span>
-            <p className="font-display text-2xl font-extrabold uppercase">EP. 02</p>
-            <p className="text-sm text-muted-foreground">
-              Print, áudio e conversa privada: até onde vai a intimidade digital.
-            </p>
-          </div>
-        </div>
-      </Section>
-
-      <Section
         dark
-        index="11"
+        index="10"
         label="PERMANÊNCIA"
         title="O feed não esquece"
         intro="Uma publicação some da timeline. As cópias, não."
@@ -256,7 +247,7 @@ function Home() {
       </Section>
 
       <Section
-        index="12"
+        index="11"
         label="RESPONSABILIDADE"
         title="Quem compartilhou?"
         intro="Quem publicou primeiro é sempre o único responsável? Atravesse a cadeia."
@@ -266,8 +257,8 @@ function Home() {
 
       <Section
         label="FEED"
-        index="13"
-        title="O feed real"
+        index="12"
+        title="O feed editorial"
         intro="Nossos conteúdos em camadas: post na superfície, contexto, direito e consequência logo abaixo."
       >
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -294,18 +285,7 @@ function Home() {
         </div>
       </section>
 
-      <Section
-        label="REDES"
-        index="14"
-        title="Do feed para cá"
-        intro="Os conteúdos curtos do projeto continuam nas plataformas. Aqui eles ganham a camada jurídica."
-      >
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {socialPosts.map((s) => (
-            <SocialCard key={s.id} post={s} />
-          ))}
-        </div>
-      </Section>
+      <InstagramSection index="13" />
 
       <section className="surface-dark border-t px-4 py-24 text-center md:px-8 md:py-32">
         <div className="mx-auto max-w-3xl">

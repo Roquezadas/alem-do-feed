@@ -10,6 +10,7 @@ export function Section({
   index,
   atmosphere = "paper",
   className,
+  headingAs: Heading = "h2",
 }: {
   id?: string;
   label?: string;
@@ -20,6 +21,7 @@ export function Section({
   index?: string;
   atmosphere?: "paper" | "ink" | "digital" | "consequence";
   className?: string;
+  headingAs?: "h1" | "h2";
 }) {
   return (
     <section
@@ -39,10 +41,14 @@ export function Section({
             </span>
           ) : null}
           <div className="relative z-10 max-w-3xl">
-            {label ? <span className="label-mono text-primary">{label}</span> : null}
-            <h2 className="mt-3 text-4xl leading-[0.9] font-extrabold tracking-[-0.055em] uppercase md:text-6xl">
+            {label ? (
+              <span className={cn("label-mono", dark ? "text-coral" : "text-primary")}>
+                {label}
+              </span>
+            ) : null}
+            <Heading className="mt-3 text-4xl leading-[0.9] font-extrabold tracking-[-0.055em] uppercase md:text-6xl">
               {title}
-            </h2>
+            </Heading>
           </div>
           {intro ? (
             <p

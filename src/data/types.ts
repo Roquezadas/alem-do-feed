@@ -10,10 +10,11 @@ export interface Episode {
   title: string;
   subtitle: string;
   description: string;
-  youtubeId?: string;
   spotifyUrl?: string;
+  spotifyId?: string;
   instagramUrl?: string;
   coverImage?: string;
+  coverSourceUrl?: string;
   date: string;
   duration?: string;
   topics: string[];
@@ -106,14 +107,16 @@ export interface FeedItem {
 
 export interface SocialPost {
   id: string;
-  platform: "instagram" | "youtube" | "tiktok";
-  kind: "reel" | "post" | "carrossel" | "video" | "short";
-  caption: string;
-  date: string;
+  label: string;
+  title: string;
   url: string;
-  videoId?: string;
-  thumbnail?: string;
-  embeddable?: boolean;
+  context?: string;
+  preview?: {
+    src: string;
+    alt: string;
+    width: number;
+    height: number;
+  };
 }
 
 export type FeedAction =
