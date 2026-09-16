@@ -32,6 +32,7 @@ function StoryDetail({ item }: { item: Question }) {
 export function QuestionStory() {
   const [active, setActive] = useState(0);
   const item = storyQuestions[active];
+  if (!item) return null;
 
   return (
     <div className="story-grid">

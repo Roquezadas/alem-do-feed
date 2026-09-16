@@ -21,6 +21,8 @@ const chain = [
 
 export function ShareChain() {
   const [active, setActive] = useState(0);
+  const current = chain[active];
+  if (!current) return null;
 
   return (
     <div>
@@ -50,7 +52,7 @@ export function ShareChain() {
 
       <div className="animate-slide-left mt-6 border-l-2 border-accent pl-4" key={active}>
         <span className="label-mono opacity-60">ETAPA {active + 1} DE 4</span>
-        <p className="mt-2 max-w-2xl text-base leading-relaxed">{chain[active].text}</p>
+        <p className="mt-2 max-w-2xl text-base leading-relaxed">{current.text}</p>
       </div>
     </div>
   );

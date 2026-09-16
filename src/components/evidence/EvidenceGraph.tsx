@@ -63,6 +63,7 @@ export function EvidenceGraph({
           .map((edge) => {
             const from = centerOf(edge.from, visibleNodes, graph.center.id);
             const to = centerOf(edge.to, visibleNodes, graph.center.id);
+            if (!from || !to) return null;
             const active = activeId === edge.to || hoveredId === edge.to || activeId === edge.from;
             const muted = Boolean(activeId || hoveredId) && !active;
             return (
@@ -101,6 +102,7 @@ export function EvidenceGraph({
 
       {visibleNodes.map((node, index) => {
         const p = positionPresets[index % positionPresets.length];
+        if (!p) return null;
         const isActive = activeId === node.id || hoveredId === node.id;
         const isMuted = Boolean(activeId || hoveredId) && !isActive;
         return (

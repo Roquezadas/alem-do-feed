@@ -202,7 +202,7 @@ export function EvidenceRoom() {
             {activeNode ? (
               <EvidenceDetail
                 node={activeNode}
-                relationship={activeEdge?.relationship}
+                {...(activeEdge ? { relationship: activeEdge.relationship } : {})}
                 onClose={() => setActiveId(null)}
                 onFollow={handleFollow}
               />

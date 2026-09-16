@@ -1857,6 +1857,126 @@ body {
   color: color-mix(in oklab, white 50%, transparent);
 }
 
+/* Hero humano: a arte editorial é exibida inteira, sem overlays sobre seus textos. */
+.hero-human {
+  overflow: hidden;
+  padding: clamp(2.5rem, 5vw, 5rem) 1rem 4rem;
+}
+
+.hero-human-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2rem;
+  max-width: 80rem;
+  margin-inline: auto;
+}
+
+.hero-human-intro,
+.hero-human-listen {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+}
+
+.hero-human-title {
+  margin-top: 1.25rem;
+  font-size: clamp(2.6rem, 10.7vw, 5rem);
+  font-weight: 800;
+  line-height: 0.98;
+  letter-spacing: -0.065em;
+}
+
+.hero-human-title span {
+  text-decoration: underline;
+  text-decoration-color: var(--cobalt);
+  text-decoration-thickness: 0.07em;
+  text-underline-offset: 0.15em;
+}
+
+.hero-human-deck {
+  max-width: 29rem;
+  margin-top: 1.75rem;
+  color: #d9d7d0;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+}
+
+.hero-human-figure {
+  position: relative;
+  width: 100%;
+  max-width: 35rem;
+  min-width: 0;
+  margin: 0 auto;
+}
+
+.hero-human-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: contain;
+}
+
+.hero-human-art-caption {
+  margin-top: 1rem;
+  color: #b4b5ba;
+  font-size: 0.625rem;
+  line-height: 1.6;
+}
+
+.hero-human-episode {
+  padding-left: 1.25rem;
+  border-left: 2px solid var(--cobalt);
+}
+
+.hero-human-episode h2 {
+  margin-top: 0.5rem;
+  font-size: clamp(1.8rem, 3.2vw, 2.5rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.hero-human-episode p {
+  max-width: 28rem;
+  margin-top: 0.65rem;
+  color: #d9d7d0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+@media (min-width: 640px) {
+  .hero-human {
+    padding-inline: 2rem;
+  }
+}
+
+@media (min-width: 960px) {
+  .hero-human-grid {
+    grid-template-columns: minmax(0, 1.04fr) minmax(0, 0.96fr);
+    column-gap: 2rem;
+    row-gap: 2rem;
+    align-items: center;
+  }
+  .hero-human-title {
+    font-size: clamp(3.7rem, 6.25vw, 5.25rem);
+  }
+  .hero-human-intro {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: end;
+  }
+  .hero-human-listen {
+    grid-column: 1;
+    grid-row: 2;
+    align-self: start;
+  }
+  .hero-human-figure {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    max-width: none;
+  }
+}
+
 .editorial-quiet {
   position: relative;
   overflow: hidden;

@@ -1,5 +1,7 @@
 # Atualização pública — Além do Feed
 
+> Registro da etapa de 15/09. A continuação de 16/09 substitui o hero, acrescenta os embeds oficiais do Instagram e conclui as verificações de TypeScript. Consulte [HERO-E-INSTAGRAM.md](HERO-E-INSTAGRAM.md) para o estado atualizado; as observações abaixo sobre ausência de imagens geradas, SDK e dependências são históricas.
+
 Implementação local em 15/09/2026, no projeto `C:/Users/marce/AlemDoFeed/camadas-legais`. Stack, identidade e logo mantidas. Não foi feito deploy, push ou commit.
 
 ## Feed Experimental e logo

@@ -6,9 +6,8 @@ const description =
   "Conecte conceitos, leis, jurisprudência e episódios para descobrir o que existe além do feed.";
 
 export const Route = createFileRoute("/sala-de-evidencias")({
-  validateSearch: (search: Record<string, unknown>) => ({
-    topic: typeof search.topic === "string" ? search.topic : undefined,
-  }),
+  validateSearch: (search: Record<string, unknown>): { topic?: string } =>
+    typeof search["topic"] === "string" ? { topic: search["topic"] } : {},
   head: () => ({
     meta: [
       { title },

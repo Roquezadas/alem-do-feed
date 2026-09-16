@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
+import { JSDOM } from "jsdom";
 
 // Executar com o servidor local ativo:
 // node scripts/verify-public-launch.mjs http://127.0.0.1:3100
@@ -48,6 +49,44 @@ for (const route of ["/", "/conteudos"]) {
   }
 }
 
+const homeDom = new JSDOM(pages.get("/"));
+const contentsDom = new JSDOM(pages.get("/conteudos"));
+const hero = homeDom.window.document.querySelector(".hero-human");
+assert.ok(hero, "Hero humano presente no SSR");
+assert.match(hero.querySelector("h1").textContent, /Antes de ser\s*conteúdo,\s*era alguém\./);
+assert.doesNotMatch(
+  hero.innerHTML,
+  /hero-layers|hero-pessoa-alem-do-frame|camada oculta|hero-human-crop-note|COMPOSIÇÃO GERADA COM IA/i,
+);
+assert.ok(
+  [...hero.querySelectorAll("a")].some((link) => link.getAttribute("href") === spotify),
+  "Hero leva ao episódio publicado",
+);
+const portrait = hero.querySelector("img");
+assert.equal(portrait.getAttribute("width"), "1120");
+assert.equal(portrait.getAttribute("height"), "1400");
+assert.equal(portrait.getAttribute("loading"), "eager");
+assert.equal(portrait.getAttribute("fetchpriority"), "high");
+assert.match(portrait.getAttribute("src"), /hero-quem-autorizou-publicacao-1120/);
+assert.match(portrait.getAttribute("alt"), /Arte editorial.*Quem autorizou/);
+assert.match(hero.querySelector("figcaption").textContent, /COMPOSIÇÃO EDITORIAL/);
+const candidates = portrait.getAttribute("srcset").split(",");
+assert.equal(candidates.length, 2, "Hero tem duas resoluções");
+for (const candidate of candidates) {
+  const [src, size] = candidate.trim().split(/\s+/);
+  const response = await fetch(new URL(src, base));
+  assert.equal(response.status, 200, src);
+  assert.match(response.headers.get("content-type"), /image\/webp/);
+  const bytes = (await response.arrayBuffer()).byteLength;
+  assert.ok(bytes < (size === "640w" ? 40000 : 100000), `Hero otimizado: ${size}`);
+}
+assert.equal(homeDom.window.document.querySelectorAll(".instagram-embed-card").length, 0);
+assert.equal(contentsDom.window.document.querySelectorAll(".instagram-embed-card").length, 2);
+for (const dom of [homeDom, contentsDom]) {
+  assert.equal(dom.window.document.querySelectorAll('script[src*="instagram.com"]').length, 0);
+  dom.window.close();
+}
+
 for (const route of ["/", "/episodios", "/episodios/quem-autorizou"]) {
   const html = pages.get(route);
   assert.equal((html.match(/<h1\b/g) ?? []).length, 1, `Título principal: ${route}`);
@@ -85,6 +124,6 @@ assert.match(playerSource, /useState\(false\)/);
 assert.match(playerSource, /active \? \(/);
 assert.match(playerSource, /onClick=\{\(\) => setActive\(true\)\}/);
 console.log(
-  "OK: links, posts únicos, capa local, metadados, 404, SSR sem embeds e remoção da imagem.",
+  "OK: hero responsivo/otimizado, Instagram client-only, links, capas, metadados, 404 e Feed preservado.",
 );
 console.log("Estes testes não substituem inspeção visual nem teste interativo no navegador.");
