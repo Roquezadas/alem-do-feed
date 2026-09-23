@@ -68,10 +68,10 @@ export function EpisodeCard({
             VER ANÁLISE →
           </Link>
         </div>
-        {featured ? (
+        {featured && episode.evidenceTopicSlug ? (
           <Link
             to="/sala-de-evidencias"
-            search={{ topic: "direito-a-imagem" }}
+            search={{ topic: episode.evidenceTopicSlug }}
             className="label-mono mt-6 self-start border-b border-primary py-2 text-primary"
           >
             EXPLORAR AS EVIDÊNCIAS DO EPISÓDIO →

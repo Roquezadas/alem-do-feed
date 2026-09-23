@@ -1,10 +1,10 @@
 import type { SocialPost } from "./types";
+import { latestEpisode } from "./episodes";
 
 /** Links oficiais fornecidos pelo projeto. */
 export const social = {
   instagram: "https://www.instagram.com/alemdofeed.podcast/",
-  spotify:
-    "https://open.spotify.com/episode/0DEP800hwGTcQwGc2Y5U7O?si=m5MWME2CQ0SsQNIPrj188w&utm_source=copy-link",
+  spotify: latestEpisode.spotifyUrl,
 };
 
 // Acrescente posts aqui. `context` e `preview` são opcionais e só devem usar material verificado.

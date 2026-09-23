@@ -10,6 +10,7 @@
     "preview": "vite preview",
     "lint": "eslint .",
     "test:instagram": "node --test tests/instagram-embed.test.mjs",
+    "test:spotify": "node --test tests/spotify-embed.test.mjs",
     "format": "prettier --write ."
   },
   "overrides": {

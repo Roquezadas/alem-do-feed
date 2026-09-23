@@ -7,7 +7,7 @@ import { feedFilters, feedItems } from "@/data/feed";
 
 const title = "Feed editorial — Além do Feed";
 const description =
-  "Publicações do Instagram oficial e conteúdos do Além do Feed. Ouça o primeiro episódio e explore imagem, privacidade e responsabilidade nas redes.";
+  "Publicações do Instagram oficial e conteúdos do Além do Feed. Ouça os episódios e explore imagem, inteligência artificial e responsabilidade nas redes.";
 
 export const Route = createFileRoute("/conteudos")({
   head: () => ({

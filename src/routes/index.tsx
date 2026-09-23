@@ -14,7 +14,7 @@ import { questions } from "@/data/questions";
 import { laws } from "@/data/laws";
 import { cases } from "@/data/cases";
 import { myths } from "@/data/myths";
-import { episodes } from "@/data/episodes";
+import { episodes, latestEpisode } from "@/data/episodes";
 import { feedItems } from "@/data/feed";
 import { social } from "@/data/social";
 import { ConsequenceTimeline } from "@/components/ConsequenceTimeline";
@@ -24,8 +24,7 @@ import { EvidenceTeaser } from "@/components/evidence/EvidenceTeaser";
 import { OpenFrame } from "@/components/OpenFrame";
 
 const title = "Além do Feed — Direito Digital, redes sociais e proteção da imagem";
-const description =
-  "O Além do Feed já está no ar. Ouça o EP. 01 — Quem autorizou? no Spotify, acompanhe o Instagram oficial e explore direito à imagem e redes sociais.";
+const description = `Ouça o ${latestEpisode.number} — ${latestEpisode.title} no Spotify. ${latestEpisode.subtitle}. Explore os episódios e as evidências do Além do Feed.`;
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -48,6 +47,7 @@ export const Route = createFileRoute("/")({
           name: "Além do Feed",
           description,
           inLanguage: "pt-BR",
+          numberOfEpisodes: episodes.length,
           about: "Direito Digital, proteção da imagem e redes sociais",
           sameAs: [social.instagram],
         }),
@@ -64,11 +64,17 @@ function Home() {
 
       <Section
         id="episodio-disponivel"
-        label="PODCAST / PRIMEIRA EDIÇÃO"
-        title="O primeiro episódio está no ar."
-        intro="Quem aparece na sua publicação? A conversa começa no Spotify e continua nas camadas do site."
+        label="PODCAST / ÚLTIMO EPISÓDIO"
+        title="Parece você. Mas você nunca gravou aquilo."
+        intro="Um vídeo pode ser falso. Uma voz pode ser falsa. Mas o dano causado à pessoa pode ser completamente real."
       >
-        <EpisodeCard episode={episodes[0]} featured />
+        <EpisodeCard episode={latestEpisode} featured />
+        <Link
+          to="/episodios"
+          className="label-mono mt-8 inline-block border-b border-primary py-2 text-primary"
+        >
+          EXPLORAR OS {episodes.length} EPISÓDIOS PUBLICADOS →
+        </Link>
       </Section>
 
       <section className="editorial-quiet px-4 py-28 md:px-8 md:py-44">

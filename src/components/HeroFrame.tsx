@@ -1,7 +1,8 @@
 import { Link } from "@tanstack/react-router";
-import heroArtwork from "@/assets/hero-quem-autorizou-publicacao-1120.webp";
-import heroArtworkSmall from "@/assets/hero-quem-autorizou-publicacao-640.webp";
+import heroArtwork from "@/assets/hero-ep02-isso-e-real-1120.webp";
+import heroArtworkSmall from "@/assets/hero-ep02-isso-e-real-640.webp";
 import { social } from "@/data/social";
+import { latestEpisode } from "@/data/episodes";
 
 export function HeroFrame() {
   return (
@@ -17,8 +18,8 @@ export function HeroFrame() {
             <span>era alguém.</span>
           </h1>
           <p className="hero-human-deck">
-            Uma foto pode parecer só um registro. Quando vira publicação, entram em cena contexto,
-            consentimento e consequências.
+            Uma imagem pode parecer só um registro. Real ou fabricada, quando vira publicação,
+            entram em cena pessoas, direitos e consequências.
           </p>
         </div>
 
@@ -27,7 +28,7 @@ export function HeroFrame() {
             src={heroArtwork}
             srcSet={`${heroArtworkSmall} 640w, ${heroArtwork} 1120w`}
             sizes="(min-width: 1280px) 592px, (min-width: 960px) 47vw, (min-width: 640px) 560px, calc(100vw - 32px)"
-            alt="Arte editorial com a foto de uma mulher em um encontro entre amigos, dentro de uma publicação sobreposta a outras. As frases ‘Mais que posts, pessoas reais’ e ‘Quem autorizou?’ destacam a pessoa por trás da imagem."
+            alt="Arte editorial do EP. 02 — Isso é real?: o rosto de uma mulher aparece sobreposto a uma segunda versão, atravessado por linhas azuis. Deepfakes, inteligência artificial e identidade digital."
             width={1120}
             height={1400}
             loading="eager"
@@ -36,19 +37,19 @@ export function HeroFrame() {
             className="hero-human-image"
           />
           <figcaption className="hero-human-art-caption label-mono">
-            COMPOSIÇÃO EDITORIAL / EP. 01 — QUEM AUTORIZOU?
+            COMPOSIÇÃO EDITORIAL / {latestEpisode.number} — {latestEpisode.title}
           </figcaption>
         </figure>
 
         <div className="hero-human-listen">
           <div className="hero-human-episode">
-            <span className="label-mono text-coral">EP. 01 / DIREITO À IMAGEM</span>
-            <h2>Quem autorizou?</h2>
-            <p>Consentimento, exposição e consequências. Já disponível no Spotify.</p>
+            <span className="label-mono text-coral">{latestEpisode.number} / NOVO EPISÓDIO</span>
+            <h2>{latestEpisode.title}</h2>
+            <p>{latestEpisode.subtitle}. Já disponível no Spotify.</p>
           </div>
           <div className="mt-6 flex flex-wrap gap-3">
             <a
-              href={social.spotify}
+              href={latestEpisode.spotifyUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="label-mono bg-primary px-5 py-4 text-primary-foreground"
@@ -57,7 +58,7 @@ export function HeroFrame() {
             </a>
             <Link
               to="/episodios/$slug"
-              params={{ slug: "quem-autorizou" }}
+              params={{ slug: latestEpisode.slug }}
               className="label-mono border border-white/50 px-5 py-4"
             >
               EXPLORAR O EPISÓDIO →

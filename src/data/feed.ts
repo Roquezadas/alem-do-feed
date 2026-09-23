@@ -1,11 +1,30 @@
 import type { FeedItem } from "./types";
-import { episodes } from "./episodes";
+import { getEpisode } from "./episodes";
+
+// O anúncio permanece ligado ao episódio, mesmo depois de um próximo lançamento.
+const episode02 = getEpisode("isso-e-real")!;
 
 export const feedItems: FeedItem[] = [
   {
+    id: "f-ep02",
+    type: "episodio",
+    date: episode02.date,
+    label: "NOVO EPISÓDIO",
+    title: `${episode02.number} — ${episode02.title}`,
+    summary: episode02.description,
+    layerContext:
+      "É o seu rosto. É a sua voz. Parece você. Só existe um problema: você nunca gravou aquilo.",
+    layerLaw:
+      "Imagem, honra e vida privada: os fundamentos reunidos no episódio ajudam a discutir os usos nocivos de inteligência artificial.",
+    layerConsequence:
+      "Um vídeo pode ser falso. Mas o dano causado à pessoa pode ser completamente real. Verificar antes de compartilhar faz parte da conversa.",
+    href: `/episodios/${episode02.slug}`,
+    tags: ["Episódios", "IA"],
+  },
+  {
     id: "f-01",
     type: "episodio",
-    date: episodes[0].date,
+    date: getEpisode("quem-autorizou")!.date,
     label: "EPISÓDIO DISPONÍVEL",
     title: "EP. 01 — Quem autorizou?",
     summary:

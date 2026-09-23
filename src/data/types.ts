@@ -20,6 +20,7 @@ export interface Episode {
   topics: string[];
   lawIds: string[];
   caseIds: string[];
+  evidenceTopicSlug?: string;
   tags: string[];
 }
 

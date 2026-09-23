@@ -5,8 +5,7 @@ import { JSDOM } from "jsdom";
 // Executar com o servidor local ativo:
 // node scripts/verify-public-launch.mjs http://127.0.0.1:3100
 const base = process.argv[2] ?? "http://127.0.0.1:3100";
-const spotify =
-  "https://open.spotify.com/episode/0DEP800hwGTcQwGc2Y5U7O?si=m5MWME2CQ0SsQNIPrj188w&utm_source=copy-link";
+const spotify = "https://open.spotify.com/episode/1mCK51FFYaM8NnUaKIRmGA";
 const instagram = "https://www.instagram.com/alemdofeed.podcast/";
 const posts = [
   "https://www.instagram.com/p/DczNevnoCXv/?img_index=1",
@@ -16,9 +15,11 @@ const routes = [
   "/",
   "/episodios",
   "/episodios/quem-autorizou",
+  "/episodios/isso-e-real",
   "/conteudos",
   "/feed-experimental",
   "/sala-de-evidencias?topic=direito-a-imagem",
+  "/sala-de-evidencias?topic=inteligencia-artificial",
   "/o-que-pode-fazer",
   "/entenda",
   "/leis",
@@ -67,8 +68,8 @@ assert.equal(portrait.getAttribute("width"), "1120");
 assert.equal(portrait.getAttribute("height"), "1400");
 assert.equal(portrait.getAttribute("loading"), "eager");
 assert.equal(portrait.getAttribute("fetchpriority"), "high");
-assert.match(portrait.getAttribute("src"), /hero-quem-autorizou-publicacao-1120/);
-assert.match(portrait.getAttribute("alt"), /Arte editorial.*Quem autorizou/);
+assert.match(portrait.getAttribute("src"), /hero-ep02-isso-e-real-1120/);
+assert.match(portrait.getAttribute("alt"), /Arte editorial.*Isso é real/);
 assert.match(hero.querySelector("figcaption").textContent, /COMPOSIÇÃO EDITORIAL/);
 const candidates = portrait.getAttribute("srcset").split(",");
 assert.equal(candidates.length, 2, "Hero tem duas resoluções");
@@ -87,17 +88,60 @@ for (const dom of [homeDom, contentsDom]) {
   dom.window.close();
 }
 
-for (const route of ["/", "/episodios", "/episodios/quem-autorizou"]) {
+for (const route of ["/", "/episodios", "/episodios/quem-autorizou", "/episodios/isso-e-real"]) {
   const html = pages.get(route);
   assert.equal((html.match(/<h1\b/g) ?? []).length, 1, `Título principal: ${route}`);
-  assert.ok(html.includes("8 min 17 s"), `Duração confirmada: ${route}`);
-  assert.doesNotMatch(html, /EM PRODUÇÃO|EP\. 02|PRÓXIMO CAPÍTULO/, route);
+  const ep01 = route === "/episodios/quem-autorizou";
+  assert.ok(html.includes(ep01 ? "8 min 17 s" : "11 min 01 s"), `Duração confirmada: ${route}`);
+  assert.doesNotMatch(html, /EM PRODUÇÃO|PRÓXIMO CAPÍTULO/, route);
   assert.match(
     html,
     /<img[^>]+ep01-quem-autorizou-spotify[^>]+width="640"[^>]+height="640"/,
     `Capa com dimensões: ${route}`,
   );
-  assert.ok(html.includes("topic=direito-a-imagem"), `Deep-link: ${route}`);
+  assert.ok(
+    html.includes(ep01 ? "topic=direito-a-imagem" : "topic=inteligencia-artificial"),
+    `Deep-link: ${route}`,
+  );
+}
+
+const archive = new JSDOM(pages.get("/episodios"));
+assert.deepEqual(
+  [...archive.window.document.querySelectorAll(".episode-card h3")].map((h) => h.textContent),
+  ["ISSO É REAL?", "QUEM AUTORIZOU?"],
+);
+archive.window.close();
+
+for (const [slug, id, title] of [
+  ["isso-e-real", "1mCK51FFYaM8NnUaKIRmGA", "ISSO É REAL?"],
+  ["quem-autorizou", "0DEP800hwGTcQwGc2Y5U7O", "QUEM AUTORIZOU?"],
+]) {
+  const dom = new JSDOM(pages.get(`/episodios/${slug}`));
+  const doc = dom.window.document;
+  assert.equal(doc.querySelector("h1").textContent, title);
+  assert.equal(
+    doc.querySelectorAll('link[rel="canonical"]').length,
+    1,
+    "Canonical único no detalhe",
+  );
+  assert.ok(
+    [...doc.querySelectorAll("main a")].some(
+      (a) => a.href === `https://open.spotify.com/episode/${id}`,
+    ),
+  );
+  assert.equal(
+    doc.querySelector('link[rel="canonical"]').href,
+    `https://alemdofeed.vercel.app/episodios/${slug}`,
+  );
+  assert.equal(
+    doc.querySelector('meta[property="og:url"]').content,
+    `https://alemdofeed.vercel.app/episodios/${slug}`,
+  );
+  assert.ok(doc.querySelector('meta[property="og:image"]').content.startsWith("https://"));
+  assert.equal(doc.querySelectorAll("[data-spotify-status='idle']").length, 1);
+  assert.equal(doc.querySelectorAll('script[src*="spotify.com"]').length, 0);
+  assert.ok(doc.querySelector('a[href="/episodios"]'));
+  dom.window.close();
 }
 
 const detail = pages.get("/episodios/quem-autorizou");
@@ -116,13 +160,6 @@ const feedSource = await readFile(
   "utf8",
 );
 assert.doesNotMatch(feedSource, /experimental-climax-art|feedRuptureClimax/);
-const playerSource = await readFile(
-  new URL("../src/components/SpotifyEmbed.tsx", import.meta.url),
-  "utf8",
-);
-assert.match(playerSource, /useState\(false\)/);
-assert.match(playerSource, /active \? \(/);
-assert.match(playerSource, /onClick=\{\(\) => setActive\(true\)\}/);
 console.log(
   "OK: hero responsivo/otimizado, Instagram client-only, links, capas, metadados, 404 e Feed preservado.",
 );

@@ -12,7 +12,7 @@ export const topics: Topic[] = [
       "Um amigo publica um vídeo da festa em que você aparece dançando e a conta dele é monetizada.",
     lawIds: ["cf-5-x", "cc-20"],
     caseIds: ["stj-sumula-403", "stf-adi-4815"],
-    episodeIds: ["ep-01"],
+    episodeIds: ["ep-02", "ep-01"],
   },
   {
     id: "t-privacidade",
@@ -24,7 +24,7 @@ export const topics: Topic[] = [
     example: "Alguém publica a localização em tempo real de outra pessoa nos stories.",
     lawIds: ["cc-21", "cf-5-x"],
     caseIds: ["stf-re-1010606"],
-    episodeIds: ["ep-01"],
+    episodeIds: ["ep-02", "ep-01"],
   },
   {
     id: "t-local-publico",
@@ -50,7 +50,7 @@ export const topics: Topic[] = [
       "Reenviar um print ofensivo com comentário de deboche é diferente de encaminhar uma prova a uma autoridade.",
     lawIds: ["cc-186-927", "cp-138-140"],
     caseIds: ["stj-sumula-221", "stf-re-1037396"],
-    episodeIds: ["ep-01"],
+    episodeIds: ["ep-02", "ep-01"],
   },
   {
     id: "t-gravar-divulgar",
@@ -75,7 +75,7 @@ export const topics: Topic[] = [
     example: "Um post afirma que determinada pessoa cometeu um crime, sem qualquer prova.",
     lawIds: ["cp-138-140", "cf-5-x"],
     caseIds: ["stj-sumula-221"],
-    episodeIds: ["ep-01"],
+    episodeIds: ["ep-02", "ep-01"],
   },
   {
     id: "t-liberdade",
@@ -111,7 +111,7 @@ export const topics: Topic[] = [
     example: "Um perfil com publicidade paga que publica rostos de clientes sem autorização.",
     lawIds: ["lgpd-7", "lgpd-4"],
     caseIds: [],
-    episodeIds: ["ep-01"],
+    episodeIds: ["ep-02", "ep-01"],
   },
   {
     id: "t-resp-civil",
@@ -123,7 +123,7 @@ export const topics: Topic[] = [
     example: "Uma publicação viraliza, a pessoa retratada perde oportunidades e pede indenização.",
     lawIds: ["cc-186-927"],
     caseIds: ["stj-sumula-221", "stj-sumula-403"],
-    episodeIds: ["ep-01"],
+    episodeIds: ["ep-02", "ep-01"],
   },
   {
     id: "t-crimes-honra",
@@ -184,7 +184,7 @@ export const topics: Topic[] = [
     example: "Criar um deepfake de um colega dizendo algo que ele nunca disse.",
     lawIds: ["cf-5-x", "cc-20", "lgpd-7"],
     caseIds: [],
-    episodeIds: [],
+    episodeIds: ["ep-02"],
   },
 ];
 

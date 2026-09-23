@@ -34,6 +34,15 @@ export const Route = createFileRoute("/episodios/$slug")({
         property: "og:description",
         content: loaderData ? `Ouça no Spotify. ${loaderData.subtitle}.` : "Podcast Além do Feed.",
       },
+      ...(loaderData
+        ? [
+            {
+              property: "og:url",
+              content: `https://alemdofeed.vercel.app/episodios/${loaderData.slug}`,
+            },
+          ]
+        : []),
+      { name: "twitter:card", content: "summary_large_image" },
       ...(loaderData?.coverSourceUrl
         ? [
             { property: "og:image", content: loaderData.coverSourceUrl },
@@ -41,7 +50,9 @@ export const Route = createFileRoute("/episodios/$slug")({
           ]
         : []),
     ],
-    links: loaderData ? [{ rel: "canonical", href: `/episodios/${loaderData.slug}` }] : [],
+    links: loaderData
+      ? [{ rel: "canonical", href: `https://alemdofeed.vercel.app/episodios/${loaderData.slug}` }]
+      : [],
   }),
   notFoundComponent: () => <p className="p-8">Episódio não encontrado.</p>,
   component: Page,
@@ -72,7 +83,7 @@ function Page() {
               className="aspect-square w-full border bg-white object-contain"
             />
           ) : null}
-          <div>
+          <div className="min-w-0">
             <p className="label-mono mb-5 text-coral">EPISÓDIO PUBLICADO · {episode.duration}</p>
             <p className="max-w-xl text-lg leading-relaxed opacity-85">{episode.description}</p>
             {episode.spotifyUrl ? (
@@ -107,30 +118,37 @@ function Page() {
           ))}
         </ol>
       </Section>
-      <Section label="CAMADAS RELACIONADAS" title="A lei e os tribunais">
+      <Section
+        label="CAMADAS RELACIONADAS"
+        title={relatedCases.length ? "A lei e os tribunais" : "Fundamentos para aprofundar"}
+      >
         <div className="mb-10 flex flex-wrap gap-4">
-          <Link
-            to="/sala-de-evidencias"
-            search={{ topic: "direito-a-imagem" }}
-            className="label-mono bg-primary px-5 py-4 text-primary-foreground"
-          >
-            EXPLORAR AS EVIDÊNCIAS DO EPISÓDIO →
-          </Link>
+          {episode.evidenceTopicSlug ? (
+            <Link
+              to="/sala-de-evidencias"
+              search={{ topic: episode.evidenceTopicSlug }}
+              className="label-mono bg-primary px-5 py-4 text-primary-foreground"
+            >
+              EXPLORAR AS EVIDÊNCIAS DO EPISÓDIO →
+            </Link>
+          ) : null}
           <Link to="/feed-experimental" className="label-mono border border-foreground px-5 py-4">
             VER COMO ISSO APARECE NA PRÁTICA →
           </Link>
         </div>
-        <div className="grid gap-6 lg:grid-cols-2">
+        <div className={relatedCases.length ? "grid gap-6 lg:grid-cols-2" : ""}>
           <div className="space-y-4">
             {relatedLaws
-              .slice(0, 3)
+              .slice(0, relatedCases.length ? 3 : undefined)
               .map((law) => (law ? <LawCard key={law.id} law={law} /> : null))}
           </div>
-          <div className="space-y-4">
-            {relatedCases.map((item) => (
-              <CaseCard key={item.id} item={item} />
-            ))}
-          </div>
+          {relatedCases.length ? (
+            <div className="space-y-4">
+              {relatedCases.map((item) => (
+                <CaseCard key={item.id} item={item} />
+              ))}
+            </div>
+          ) : null}
         </div>
         <Link
           to="/episodios"
