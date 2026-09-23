@@ -1,5 +1,25 @@
 # EP. 02 e diagnóstico do Brave — 23/09/2026
 
+## Atualização posterior — correção autorizada do cache de assets
+
+O novo print confirmou um 404 de `Section-C_xBpeuw.js`, seguido de falha ao importar `routes-CizsMS6p.js`. Na auditoria seguinte, esses arquivos e `index-cDUh61Dc.js` estavam disponíveis na produção, com bytes idênticos ao build local. Foi confirmado que respostas 404 sob `/assets` herdavam cache de um ano. Um erro guardado no cache do Brave é uma hipótese forte, não uma causa comprovada no perfil do usuário.
+
+Após autorização, `src/server.ts` passou a encerrar requisições de assets que chegam ao SSR com **404 em texto simples e `no-store`** nos headers `Cache-Control`, `CDN-Cache-Control` e `Vercel-CDN-Cache-Control`. Arquivos existentes são atendidos pelo filesystem/CDN antes desse handler e mantêm sua regra de cache longo. Não houve alteração no visual, no roteamento das páginas, no ErrorBoundary, nas dependências ou em arquivos gerados manualmente.
+
+A [documentação da Vercel](https://vercel.com/docs/caching/cache-control-headers#functions-have-priority-over-config-files) confirma que os headers da Function prevalecem sobre os da configuração. A proteção fica na resposta de erro, sem desativar o cache dos assets válidos.
+
+Validação da correção:
+
+- Build e TypeScript passaram; lint com 0 erros e os 10 avisos anteriores.
+- 22 testes passaram, incluindo 5 novos testes de assets, HEAD, preservação do SSR e registro de erros reais.
+- `scripts/verify-asset-cache.mjs`: 6 requisições GET/HEAD de assets ausentes retornaram 404, `no-store` e nenhum HTML; JS, CSS e WebP válidos responderam 200, com conteúdo intacto. Conferida a ordem filesystem → SSR e a regra de cache longo no output Vercel.
+- `scripts/verify-public-launch.mjs`: 15 rotas SSR e o 404 de episódio inexistente passaram no build corrigido.
+- Arquivos desta correção: `src/server.ts`, `package.json`, este relatório; novos `tests/asset-cache.test.mjs` e `scripts/verify-asset-cache.mjs`.
+
+**Status:** correção local validada, sem commit/push/deploy. Depois de publicar, executar `node scripts/verify-asset-cache.mjs https://alemdofeed.vercel.app` usando o build correspondente e retestar o Brave. O teste verifica recursos públicos e não modifica produção. A nova política impede o armazenamento de novos erros, mas não elimina respostas já guardadas: pode ser necessária uma recarga com DevTools → Network → Disable cache → Ctrl+Shift+R, mantendo Shields ativado. Não foi adicionado refresh automático nem limpeza de dados do usuário.
+
+As seções abaixo registram a etapa anterior de lançamento do episódio, antes desta correção.
+
 ## EP. 02
 
 Adicionado ao modelo existente em `src/data/episodes.ts`, com slug `isso-e-real`, número, título, descrição, roteiro, tags e relações com fundamentos já cadastrados. A seleção `latestEpisode` centraliza o destaque. EP. 01 permanece disponível, com seu próprio Spotify, duração, conteúdo e slug `quem-autorizou`.

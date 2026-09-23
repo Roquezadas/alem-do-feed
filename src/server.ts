@@ -46,6 +46,23 @@ function isH3SwallowedErrorBody(body: string): boolean {
 
 export default {
   async fetch(request: Request, env: unknown, ctx: unknown) {
+    const pathname = new URL(request.url).pathname;
+    if (pathname === "/assets" || pathname.startsWith("/assets/")) {
+      // Arquivos existentes são servidos antes deste handler pelo filesystem/CDN.
+      // Um asset ausente não deve virar HTML do router nem herdar o cache immutable
+      // de /assets/**. Headers da Function prevalecem sobre os da configuração Vercel.
+      return new Response(request.method === "HEAD" ? null : "Asset not found.\n", {
+        status: 404,
+        headers: {
+          "content-type": "text/plain; charset=utf-8",
+          "cache-control": "no-store",
+          "cdn-cache-control": "no-store",
+          "vercel-cdn-cache-control": "no-store",
+          "x-content-type-options": "nosniff",
+        },
+      });
+    }
+
     try {
       const handler = await getServerEntry();
       const response = await handler.fetch(request, env, ctx);
